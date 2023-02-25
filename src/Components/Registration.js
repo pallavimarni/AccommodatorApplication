@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Dropdown } from 'react-bootstrap';
-
+import axios from 'axios';
 
 
 const RegistrationForm = () => {
@@ -19,9 +19,29 @@ const RegistrationForm = () => {
         }
 
         setValidated(true);
+        axios.post(url,{
+        firstname: data.firstname
+        })
+        .then(res=> {
+        console.log(res.data)
+        })
     };
+
+const url="http://localhost:3000"
+const [data, setData] =useState ({
+firstname:"",
+})
+
+
+function handle(e){
+const newData={...data}
+newData[e.target.id] = e.target.value
+setData(newData)
+console.log(newData)
+}
+
     return (
-        <Form noValidate validated={validated} onSubmit={handleSubmit} novalidate on-input='ConfirmPassword.setCustomValidity(ConfirmPassword.value != Password.value ? true : false)'>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
             <Form.Group>
                 <h3>Sign Up</h3>
@@ -49,7 +69,7 @@ const RegistrationForm = () => {
             {selectedOption === 'option1' && (
                 <Form.Group controlId="Registration">
                     <Form.Label>Enter First Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter First Name" required />
+                    <Form.Control id = "firstname" value={data.firstname} type="text" placeholder="Enter First Name" onChange = {(e)=> handle(e)} required />
 
                     <Form.Label>Enter Last Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter Last Name" required />
