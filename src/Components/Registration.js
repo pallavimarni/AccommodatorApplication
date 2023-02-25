@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Dropdown } from 'react-bootstrap';
 
+
+
 const RegistrationForm = () => {
     const [selectedOption, setSelectedOption] = useState('option1');
     const [validated, setValidated] = useState(false);
@@ -19,7 +21,7 @@ const RegistrationForm = () => {
         setValidated(true);
     };
     return (
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form noValidate validated={validated} onSubmit={handleSubmit} novalidate on-input='ConfirmPassword.setCustomValidity(ConfirmPassword.value != Password.value ? true : false)'>
 
             <Form.Group>
                 <h3>Sign Up</h3>
@@ -47,34 +49,34 @@ const RegistrationForm = () => {
             {selectedOption === 'option1' && (
                 <Form.Group controlId="Registration">
                     <Form.Label>Enter First Name</Form.Label>
-                    <Form.Control type="email" placeholder="Enter First Name" required />
+                    <Form.Control type="text" placeholder="Enter First Name" required />
 
                     <Form.Label>Enter Last Name</Form.Label>
-                    <Form.Control type="email" placeholder="Enter Last Name" required />
+                    <Form.Control type="text" placeholder="Enter Last Name" required />
 
                     <Form.Label>Enter Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" required />
+                    <Form.Control type="email" placeholder="Enter email" pattern=".+@dal.ca" required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid email.
                     </Form.Control.Feedback>
 
                     <Form.Label>Enter Contact No.</Form.Label>
-                    <Form.Control type="contact" placeholder="Enter Contact No." required />
+                    <Form.Control type="tel" placeholder="Enter Contact No." pattern="^[0-9]{10}$" required />
                     <Form.Control.Feedback type="invalid">
-                        Please provide a valid email.
+                        Please provide a valid contact.
                     </Form.Control.Feedback>
 
                     <Form.Label>Upload Offer Letter</Form.Label>
                     <Form.Control type="file" placeholder="Upload Offer Letter" required />
 
                     <Form.Label>Create password</Form.Label>
-                    <Form.Control type="password" placeholder="Create Password" required />
+                    <Form.Control id="Password" type="password" placeholder="Create Password" required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid password.
                     </Form.Control.Feedback>
 
                     <Form.Label>Re-enter Password</Form.Label>
-                    <Form.Control type="password" placeholder="Re-enter Password" required />
+                    <Form.Control id="ConfirmPassword" type="password" placeholder="Re-enter Password" onKeyUp="validate_password()" required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid password.
                     </Form.Control.Feedback>
@@ -85,13 +87,13 @@ const RegistrationForm = () => {
                 <Form.Group controlId="formBasicUsername">
 
                     <Form.Label>Enter First Name</Form.Label>
-                    <Form.Control type="email" placeholder="Enter First Name" required />
+                    <Form.Control type="text" placeholder="Enter First Name" required />
 
                     <Form.Label>Enter Last Name</Form.Label>
-                    <Form.Control type="email" placeholder="Enter Last Name" required />
+                    <Form.Control type="text" placeholder="Enter Last Name" required />
 
                     <Form.Label>Owner type? (Lease or Roommate)</Form.Label>
-                        <select className="form-select" aria-label="Select type">
+                        <select className="form-select" aria-label="Select type" required>
                             <option selected>Select type</option>
                             <option value="1">Student</option>
                             <option value="2">Owner</option>
@@ -108,9 +110,9 @@ const RegistrationForm = () => {
                     </Form.Control.Feedback>
 
                     <Form.Label>Enter Contact No.</Form.Label>
-                    <Form.Control type="contact" placeholder="Enter Contact No." required />
+                    <Form.Control type="tel" placeholder="Enter Contact No."  pattern="^[0-9]{10}$" required />
                     <Form.Control.Feedback type="invalid">
-                        Please provide a valid email.
+                        Please provide a valid contact.
                     </Form.Control.Feedback>
 
                     <Form.Label>Create password</Form.Label>
@@ -127,7 +129,7 @@ const RegistrationForm = () => {
                 </Form.Group>
             )}
 
-
+<br/>
                 <div className="d-grid">
                     <button type="submit" className="btn btn-primary">
                         Submit
