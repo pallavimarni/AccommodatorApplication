@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { Form, Button, Dropdown } from 'react-bootstrap';
 import axios from 'axios';
 
-
 const RegistrationForm = () => {
     const [selectedOption, setSelectedOption] = useState('option1');
     const [validated, setValidated] = useState(false);
-
+    const [password, setPassword] = useState("");
+    const [reenteredPassword, setReenteredPassword] = useState("");
+    const [passwordsMatch, setPasswordsMatch] = useState(true);
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
     };
+
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -20,29 +22,35 @@ const RegistrationForm = () => {
 
         setValidated(true);
         axios.post(url,{
-        firstname: data.firstname
+            firstName: data.firstname,
+            lastName: data.lastname,
+            email: data.email,
+            password: data.password,
+            contactNo: data.contact,
+            offerLetter: data.offerletter,
+            type: data.type
         })
-        .then(res=> {
-        console.log(res.data)
-        })
+            .then(res=> {
+                console.log(res.data)
+            })
     };
 
-const url="http://localhost:3000"
-const [data, setData] =useState ({
-firstname:"",
-})
+    const url="http://localhost:8080/student/create"
+    const [data, setData] =useState ({
+        firstname:"",lastname:"", contact:"" , email:"", pass:"", offerletter:""
+
+    });
 
 
-function handle(e){
-const newData={...data}
-newData[e.target.id] = e.target.value
-setData(newData)
-console.log(newData)
-}
+    function handle(e){
+        const newData={...data}
+        newData[e.target.id] = e.target.value
+        setData(newData)
+        console.log(newData)
+    };
 
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
-
             <Form.Group>
                 <h3>Sign Up</h3>
 
@@ -72,31 +80,32 @@ console.log(newData)
                     <Form.Control id = "firstname" value={data.firstname} type="text" placeholder="Enter First Name" onChange = {(e)=> handle(e)} required />
 
                     <Form.Label>Enter Last Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Last Name" required />
+                    <Form.Control id = "lastname" value={data.lastname} type="text" placeholder="Enter Last Name" onChange = {(e)=> handle(e)} required />
 
                     <Form.Label>Enter Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" pattern=".+@dal.ca" required />
+                    <Form.Control id = "email" value={data.email} type="email" placeholder="Enter email" pattern=".+@dal.ca" onChange = {(e)=> handle(e)} required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid email.
                     </Form.Control.Feedback>
 
                     <Form.Label>Enter Contact No.</Form.Label>
-                    <Form.Control type="tel" placeholder="Enter Contact No." pattern="^[0-9]{10}$" required />
+                    <Form.Control id = "contact" value={data.contact} type="tel" placeholder="Enter Contact No." pattern="^[0-9]{10}$" onChange = {(e)=> handle(e)} required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid contact.
                     </Form.Control.Feedback>
 
                     <Form.Label>Upload Offer Letter</Form.Label>
-                    <Form.Control type="file" placeholder="Upload Offer Letter" required />
+                    <Form.Control id = "offerletter" value={data.offerletter} type="file" placeholder="Upload Offer Letter" onChange = {(e)=> handle(e)} required />
+
 
                     <Form.Label>Create password</Form.Label>
-                    <Form.Control id="Password" type="password" placeholder="Create Password" required />
+                    <Form.Control id="password" value={data.password} type="password" placeholder="Create Password" onChange = {(e)=> handle(e)} required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid password.
                     </Form.Control.Feedback>
 
                     <Form.Label>Re-enter Password</Form.Label>
-                    <Form.Control id="ConfirmPassword" type="password" placeholder="Re-enter Password" onKeyUp="validate_password()" required />
+                    <Form.Control id="ConfirmPassword" type="password" placeholder="Re-enter Password" onKeyUp="validate_password()" onChange = {(e)=> handle(e)} required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid password.
                     </Form.Control.Feedback>
@@ -107,57 +116,57 @@ console.log(newData)
                 <Form.Group controlId="formBasicUsername">
 
                     <Form.Label>Enter First Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter First Name" required />
+                    <Form.Control id = "firstname" value={data.firstname} type="text" placeholder="Enter First Name" onChange = {(e)=> handle(e)} required />
 
                     <Form.Label>Enter Last Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Last Name" required />
+                    <Form.Control id = "lastname" value={data.lastname} type="text" placeholder="Enter Last Name" onChange = {(e)=> handle(e)} required />
 
                     <Form.Label>Owner type? (Lease or Roommate)</Form.Label>
-                        <select className="form-select" aria-label="Select type" required>
-                            <option selected>Select type</option>
-                            <option value="1">Student</option>
-                            <option value="2">Owner</option>
-                        </select>
+                    <select className="form-select" id="type" value={data.type} aria-label="Select type" onChange = {(e)=> handle(e)} required>
+                        <option selected>Select type</option>
+                        <option value="1">Student</option>
+                        <option value="2">Owner</option>
+                    </select>
                     <Form.Control.Feedback type="invalid">
                         Please Select something.
                     </Form.Control.Feedback>
 
-
                     <Form.Label>Enter Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" required />
+                    <Form.Control id = "email" value={data.email} type="email" placeholder="Enter email" onChange = {(e)=> handle(e)} required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid email.
                     </Form.Control.Feedback>
 
                     <Form.Label>Enter Contact No.</Form.Label>
-                    <Form.Control type="tel" placeholder="Enter Contact No."  pattern="^[0-9]{10}$" required />
+                    <Form.Control id = "contact" value={data.contact}type="tel" placeholder="Enter Contact No."  pattern="^[0-9]{10}$" onChange = {(e)=> handle(e)} required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid contact.
                     </Form.Control.Feedback>
 
                     <Form.Label>Create password</Form.Label>
-                    <Form.Control type="password" placeholder="Create Password" required />
+                    <Form.Control id="password" value={data.password} type="password" placeholder="Create Password" onBlur="{handlePasswordChange}" onChange = {(e)=> handle(e)} required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid password.
                     </Form.Control.Feedback>
 
                     <Form.Label>Re-enter Password</Form.Label>
-                    <Form.Control type="password" placeholder="Re-enter Password" required />
+                    <Form.Control type="password" placeholder="Re-enter Password" onKeyUp="{handleReenteredPasswordChange}" onChange = {(e)=> handle(e)}required />
                     <Form.Control.Feedback type="invalid">
                         Please provide a valid password.
                     </Form.Control.Feedback>
                 </Form.Group>
             )}
 
-<br/>
-                <div className="d-grid">
-                    <button type="submit" className="btn btn-primary">
-                        Submit
-                    </button>
-                </div>
+            <br/>
+            <div className="d-grid">
+                {!passwordsMatch && <p>Passwords do not match.</p>}
+                <button type="submit" disabled={!passwordsMatch} className="btn btn-primary">
+                    Submit
+                </button>
+            </div>
         </Form>
 
-);
+    );
 };
 
 export default RegistrationForm;
