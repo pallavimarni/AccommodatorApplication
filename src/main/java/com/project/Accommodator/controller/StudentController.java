@@ -4,6 +4,8 @@ import com.project.Accommodator.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -22,8 +24,10 @@ public class StudentController {
 
     @CrossOrigin
     @PostMapping("/login")
-    public Student loginStudent(@RequestParam String email, String password) {
-        return studentService.loginStudent(email,password);
+    public Student loginStudent(@RequestBody Map<String, String> credentials) {
+        String email = credentials.get("email");
+        String password = credentials.get("password");
+        return studentService.loginStudent(email, password);
     }
 
 }
