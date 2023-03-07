@@ -4,6 +4,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Login from './Components/Registration'
 import SignUp from './Components/Login'
+//import Home from './Components/Posting'
 function App() {
     return (
         <Router>
@@ -25,6 +26,11 @@ function App() {
                                         Sign up
                                     </Link>
                                 </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={'/Posting'}>
+                                        Home
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -39,6 +45,7 @@ function App() {
                             <Route exact path="/" element={<Login />} />
                             <Route path="/sign-in" element={<Login />} />
                             <Route path="/sign-up" element={<SignUp />} />
+                            {/*<Route path="/Posting" element={<Home />} />*/}
                         </Routes>
                     </div>
                 </div>

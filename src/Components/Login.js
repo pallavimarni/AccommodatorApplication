@@ -7,11 +7,13 @@ class Login extends React.Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            userType: 'Owner'
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleUserTypeChange = this.handleUserTypeChange.bind(this);
     }
 
     handleChange(event) {
@@ -21,29 +23,56 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const {email, password} = this.state;
+        const {email, password, userType} = this.state;
 
         if (!email.endsWith('@dal.ca')) {
             console.error('Invalid email address.');
             return;
         }
-        axios.post('http://localhost:8080/student/login', {email, password})
-            .then(response => {
-                if (response.status === 200) {
-                    // authentication succeeded, grant access
-                    window.location.href = '/home';
-                } else {
-                    // authentication failed, display an error message
-                    console.error('Authentication failed:', response.data.message);
-                }
-            })
-            .catch(error => {
-                console.error('An error occurred:', error);
-            });
+        // const url = userType === 'Student' ? 'http://localhost:8080/student/login' : 'http://localhost:8080/owner/login';
+        if (this.state.userType === 'Student') {
+            axios.post('http://localhost:8080/student/login', {email, password})
+                .then(response => {
+                    if (response.status === 200) {
+                        // authentication succeeded, grant access
+                        window.location.href = '/home';
+                    } else {
+                        // authentication failed, display an error message
+                        alert("Invalid email or password");
+                        console.error('Authentication failed:', response.data.message);
+                    }
+                })
+                .catch(error => {
+                    alert("Invalid email or password");
+                    console.error('An error occurred:', error);
+
+                });
+        } else {
+            axios.post('http://localhost:8080/owner/login', {email, password})
+                .then(response => {
+                    if (response.status === 200) {
+                        // authentication succeeded, grant access
+                        window.location.href = '/home';
+                    } else {
+                        // authentication failed, display an error message
+                        alert("Invalid email or password");
+                        console.error('Authentication failed:', response.data.message);
+                    }
+                })
+                .catch(error => {
+                    alert("Invalid email or password");
+                    console.error('An error occurred:', error);
+
+                });
+        }
+    }
+
+    handleUserTypeChange(event) {
+        this.setState({ userType: event.target.value });
     }
 
 
-     render()
+    render()
     {
         return (
             <form onSubmit={this.handleSubmit}>
@@ -56,6 +85,7 @@ class Login extends React.Component {
                         type="email"
                         className="form-control"
                         placeholder="Enter email" value={this.state.email} onChange={this.handleChange}
+                        required
                     />
                 </div>
                 <div className="mb-3">
@@ -67,7 +97,14 @@ class Login extends React.Component {
                         className="form-control"
                         placeholder="Enter password"
                         value={this.state.password} onChange={this.handleChange}
+                        required
                     />
+                </div>
+                <div className="mb-3">
+                    <input id="Student" name="userType" type="radio" value="Student" checked={this.state.userType === 'Student'} onChange={this.handleUserTypeChange} />
+                    <label>Student</label>
+                    <input id="Owner" name="userType" type="radio" value="Owner" checked={this.state.userType === 'Owner'} onChange={this.handleUserTypeChange} />
+                    <label>Owner</label>
                 </div>
                 <div className="mb-3">
                     <div className="custom-control custom-checkbox">
@@ -88,7 +125,7 @@ class Login extends React.Component {
                 </div>
 
                 <p className="forgot-password text-right">
-                    Forgot <a href="#">password?</a>
+                    Forgot <a href="Posting.js">password?</a>
                 </p>
             </form>
         );
