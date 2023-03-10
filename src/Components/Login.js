@@ -75,6 +75,9 @@ class Login extends React.Component {
     render()
     {
         return (
+            <div className="auth-wrapper">
+                <div className="form-container">
+                    <div className="auth-inner">
             <form onSubmit={this.handleSubmit}>
                 <h3>Sign In</h3>
                 <div className="mb-3">
@@ -128,6 +131,9 @@ class Login extends React.Component {
                     Forgot <a href="Posting.js">password?</a>
                 </p>
             </form>
+                    </div>
+                </div>
+            </div>
         );
     }
 };

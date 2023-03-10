@@ -146,6 +146,9 @@ const RegistrationForm = () => {
         }
     };
         return (
+            <div className="auth-wrapper">
+                <div className="form-container">
+                    <div className="auth-inner">
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Group>
                     <h3>Sign Up</h3>
@@ -275,7 +278,9 @@ const RegistrationForm = () => {
                     </button>
                 </div>
             </Form>
-
+</div>
+</div>
+</div>
         );
     };
 export default RegistrationForm;
