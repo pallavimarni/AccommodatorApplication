@@ -1,50 +1,64 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Select from 'react-select';
 import './Preferences.css';
 
 const options = [{value: 'Dalhousie University', label: 'Dalhousie University'}, {
-    value: 'Saint Marys University',
-    label: 'Saint Marys University'
+    value: 'Saint Marys University', label: 'Saint Marys University'
 }, {
-    value: 'Mount Saint Vincent University',
-    label: 'Mount Saint Vincent University'
+    value: 'Mount Saint Vincent University', label: 'Mount Saint Vincent University'
 }, {
-    value: 'University of Kings College',
-    label: 'University of Kings College'
+    value: 'University of Kings College', label: 'University of Kings College'
 }, {
     value: 'NSCAD University (Nova Scotia College of Art and Design)',
     label: 'NSCAD University (Nova Scotia College of Art and Design)'
 }, {
-    value: 'Atlantic School of Theology',
-    label: 'Atlantic School of Theology'
+    value: 'Atlantic School of Theology', label: 'Atlantic School of Theology'
 }, {
-    value: 'Maritime Conservatory of Performing Arts',
-    label: 'Maritime Conservatory of Performing Arts'
+    value: 'Maritime Conservatory of Performing Arts', label: 'Maritime Conservatory of Performing Arts'
 }, {
     value: 'Canadian College of Acupuncture and Traditional Chinese Medicine',
     label: 'Canadian College of Acupuncture and Traditional Chinese Medicine'
 }, {value: 'Eastern College', label: 'Eastern College'}, {
-    value: 'Centre for Arts and Technology - Halifax',
-    label: 'Centre for Arts and Technology - Halifax'
+    value: 'Centre for Arts and Technology - Halifax', label: 'Centre for Arts and Technology - Halifax'
 }, {
-    value: 'Academy of Cosmetology and Massage',
-    label: 'Academy of Cosmetology and Massage'
+    value: 'Academy of Cosmetology and Massage', label: 'Academy of Cosmetology and Massage'
 }, {value: 'Robertson College', label: 'Robertson College'}, {
-    value: 'Centre for Distance Education',
-    label: 'Centre for Distance Education'
+    value: 'Centre for Distance Education', label: 'Centre for Distance Education'
 }];
 const foodOptions = [{value: 'Vegetarian', label: 'Vegetarian'}, {
-    value: 'Eggetarian',
-    label: 'Eggetarian'
+    value: 'Eggetarian', label: 'Eggetarian'
 }, {value: 'Non-vegetarian', label: 'Non-vegetarian'},];
 const smokingOptions = [{value: 'Yes', label: 'Yes'}, {value: 'No', label: 'No'},];
 const drinkOptions = [{value: 'Yes', label: 'Yes'}, {value: 'No', label: 'No'},];
+const livingOptions = [{value: 'a very clean space', label: 'a very clean space'}, {
+    value: 'a messy space', label: 'a messy space'
+}, {
+    value: 'I don’t care what condition the apartment/room is in',
+    label: 'I don’t care what condition the apartment/room is in'
+},];
+const studyOptions = [{
+    value: 'I need to study in a very quiet environment', label: 'I need to study in a very quiet environment'
+}, {
+    value: 'My ideal study environment has some background noise',
+    label: 'My ideal study environment has some background noise'
+}, {
+    value: 'High noise levels do not disturb me while studying',
+    label: 'High noise levels do not disturb me while studying'
+},];
+
+const interestOptions = [{value: 'Gym', label: 'Gym'}, {value: 'Music', label: 'Music'}, {
+    value: 'Sports', label: 'Sports'
+}, {value: 'Travel', label: 'Travel'}, {value: 'Photography', label: 'Photography'}, {
+    value: 'Reading', label: 'Reading'
+}, ,];
 
 function Preferences() {
     const [selectedOption1, setSelectedOption1] = useState(null);
     const [selectedOption2, setSelectedOption2] = useState(null);
     const [selectedOption3, setSelectedOption3] = useState(null);
     const [selectedOption4, setSelectedOption4] = useState(null);
+    const [selectedOption5, setSelectedOption5] = useState(null);
+    const [selectedOption6, setSelectedOption6] = useState(null);
     const [multiSelectedOptions, setMultiSelectedOptions] = useState([]);
     const handleSingleSelectChange1 = (option) => {
         setSelectedOption1(option);
@@ -58,48 +72,75 @@ function Preferences() {
     const handleSingleSelectChange4 = (option) => {
         setSelectedOption4(option);
     };
+    const handleSingleSelectChange5 = (option) => {
+        setSelectedOption5(option);
+    };
+    const handleSingleSelectChange6 = (option) => {
+        setSelectedOption6(option);
+    };
     const handleMultiSelectChange = (options) => {
         setMultiSelectedOptions(options);
     };
-    return (
-        <div className="auth-wrapper">
-            <div className="form-container">
-                <div className="auth-inner">
+    return (<div className="auth-wrapper">
         <div className="form-container">
-            <h2>Enter your preferences to find an ideal roomate</h2>
-        <form className="form">
-            <label htmlFor="single-select-input1">Select University:</label>
-            <Select
-            id="single-select-input1" options={options} value={selectedOption1} onChange={handleSingleSelectChange1}
-            className="react-select-container" classNamePrefix="react-select"/>
-            <label htmlFor="single-select-input2">Select
-            Food Preference:
-            </label>
-            <Select id="single-select-input2" options={foodOptions} value={selectedOption2}
-                                             onChange={handleSingleSelectChange2}
+            <div className="auth-inner">
+
+                <h2>Enter your preferences to find an ideal roomate</h2>
+                <form className="form">
+                    <label htmlFor="single-select-input1">Select University:</label>
+                    <Select
+                        id="single-select-input1" options={options} value={selectedOption1}
+                        onChange={handleSingleSelectChange1}
+                        className="react-select-container" classNamePrefix="react-select"/>
+                    <label htmlFor="single-select-input2">Select
+                        Food Preference:
+                    </label>
+                    <Select id="single-select-input2" options={foodOptions} value={selectedOption2}
+                            onChange={handleSingleSelectChange2}
+                            className="react-select-container"
+                            classNamePrefix="react-select"/>
+                    <label htmlFor="single-select-input3">Do
+                        you mind if your roommate smokes:</label>
+                    <Select id="single-select-input3" options={smokingOptions}
+                            value={selectedOption3}
+                            onChange={handleSingleSelectChange3}
+                            className="react-select-container"
+                            classNamePrefix="react-select"/>
+                    <label
+                        htmlFor="single-select-input4">Do you mind if your roommate drinks:</label>
+                    <Select
+                        id="single-select-input4" options={drinkOptions} value={selectedOption4}
+                        onChange={handleSingleSelectChange4} className="react-select-container"
+                        classNamePrefix="react-select"/>
+
+                    <label
+                        htmlFor="single-select-input5">Which statement accurately describes your ideal study
+                        environment?</label>
+                    <Select
+                        id="single-select-input5" options={studyOptions} value={selectedOption5}
+                        onChange={handleSingleSelectChange5} className="react-select-container"
+                        classNamePrefix="react-select"/>
+
+                    <label
+                        htmlFor="single-select-input6">I prefer to live in:</label>
+                    <Select
+                        id="single-select-input6" options={livingOptions} value={selectedOption6}
+                        onChange={handleSingleSelectChange6} className="react-select-container"
+                        classNamePrefix="react-select"/>
+
+
+                    <label htmlFor="multi-select-input">Select your interests:</label> <Select
+                    id="multi-select-input"
+                    options={interestOptions} isMulti
+                    value={multiSelectedOptions}
+                    onChange={handleMultiSelectChange}
                     className="react-select-container"
-                                             classNamePrefix="react-select"/>
-            <label htmlFor="single-select-input3">Do
-            you mind if your roommate smokes:</label>
-            <Select id="single-select-input3" options={smokingOptions}
-                                                              value={selectedOption3}
-                                                              onChange={handleSingleSelectChange3}
-                                                              className="react-select-container"
-                                                              classNamePrefix="react-select"/> <label
-            htmlFor="single-select-input4">Do you mind if your roommate drinks:</label> <Select
-            id="single-select-input4" options={drinkOptions} value={selectedOption4}
-            onChange={handleSingleSelectChange4} className="react-select-container" classNamePrefix="react-select"/>
-            <label htmlFor="multi-select-input">Select multiple fruits:</label> <Select id="multi-select-input"
-                                                                                        options={options} isMulti
-                                                                                        value={multiSelectedOptions}
-                                                                                        onChange={handleMultiSelectChange}
-                                                                                        className="react-select-container"
-                                                                                        classNamePrefix="react-select"/>
-            <button className="submit-button">Submit</button>
-        </form>
-        </div>
-                </div>
+                    classNamePrefix="react-select"/>
+                    <button className="submit-button">Submit</button>
+                </form>
             </div>
+        </div>
+
     </div>);
 }
 
