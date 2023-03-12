@@ -217,7 +217,6 @@ const RegistrationForm = () => {
                         </Form.Control.Feedback>
                     </Form.Group>
                 )}
-
                 {selectedOption === 'option2' && (
                     <Form.Group controlId="formBasicUsername">
 
@@ -228,7 +227,6 @@ const RegistrationForm = () => {
                         <Form.Label>Enter Last Name</Form.Label>
                         <Form.Control id="lastname" value={data.lastname} type="text" placeholder="Enter Last Name"
                                       onChange={handleOnChange} required/>
-
                         <Form.Label>Owner type? (Lease or Roommate)</Form.Label>
                         <select className="form-select" id="type" value={data.type} aria-label="Select type"
                                 onChange={handleOnChange} required>
