@@ -15,7 +15,7 @@ const FeaturesData = [
         image: 'card-image-2.jpg',
         description: 'Content for Card 2',
         buttonLabel: 'Button 2',
-        buttonLink: 'https://example.com/button-2',
+        buttonLink: '/AddPosting',
     },
     {
         id: 3,

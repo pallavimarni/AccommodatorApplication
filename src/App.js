@@ -7,6 +7,7 @@ import SignUp from './Components/Login'
 import HomePage from './Components/HomePage'
 import Preferences from "./Components/Preferences";
 import Features from "./Components/Features";
+import AddPosting from './Components/AddPosting';
 
 //import Home from './Components/Posting'
 
@@ -51,6 +52,7 @@ function App() {
                                 <Route path="/sign-up" element={<SignUp />} />
                                 <Route path="/Preferences" element={<Preferences />} />
                                 <Route path="/Features" element={<Features />} />
+                                <Route path="/AddPosting" element={<AddPosting />} />
                             </Routes>
 
                 <footer className="bg-light py-4">

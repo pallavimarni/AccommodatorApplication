@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -12,26 +11,26 @@ class Login extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUserTypeChange = this.handleUserTypeChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
-        const {name, value} = event.target;
-        this.setState({[name]: value});
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        const {email, password, userType} = this.state;
+        const { email, password, userType } = this.state;
 
         if (!email.endsWith('@dal.ca')) {
             console.error('Invalid email address.');
             return;
         }
-        // const url = userType === 'Student' ? 'http://localhost:8080/student/login' : 'http://localhost:8080/owner/login';
-        if (this.state.userType === 'Student') {
-            axios.post('http://localhost:8080/student/login', {email, password})
+
+        if (userType === 'Student') {
+            axios.post('http://localhost:8080/student/login', { email, password })
                 .then(response => {
                     if (response.status === 200) {
                         // authentication succeeded, grant access
@@ -45,25 +44,26 @@ class Login extends React.Component {
                 .catch(error => {
                     alert("Invalid email or password");
                     console.error('An error occurred:', error);
-
+                });
+        } else if (userType === 'Owner') {
+            axios.post('http://localhost:8080/owner/login', { email, password })
+                .then(response => {
+                    if (response.status === 200) {
+                        console.log(response.data);
+                        // authentication succeeded, grant access
+                        window.location.href = '/home';
+                    } else {
+                        // authentication failed, display an error message
+                        alert("Invalid email or password");
+                        console.error('Authentication failed:', response.data.message);
+                    }
+                })
+                .catch(error => {
+                    alert("Invalid email or password");
+                    console.error('An error occurred:', error);
                 });
         } else {
-            axios.post('http://localhost:8080/owner/login', {email, password})
-                .then(response => {
-                    if (response.status === 200) {
-                        // authentication succeeded, grant access
-                        window.location.href = '/home';
-                    } else {
-                        // authentication failed, display an error message
-                        alert("Invalid email or password");
-                        console.error('Authentication failed:', response.data.message);
-                    }
-                })
-                .catch(error => {
-                    alert("Invalid email or password");
-                    console.error('An error occurred:', error);
-
-                });
+            alert("Invalid email or password");
         }
     }
 
@@ -71,9 +71,9 @@ class Login extends React.Component {
         this.setState({ userType: event.target.value });
     }
 
-
     render()
     {
+        const { email, password, userType } = this.state;
         return (
             <div className="auth-wrapper">
                 <div className="form-container">
@@ -104,9 +104,9 @@ class Login extends React.Component {
                     />
                 </div>
                 <div className="mb-3">
-                    <input id="Student" name="userType" type="radio" value="Student" checked={this.state.userType === 'Student'} onChange={this.handleUserTypeChange} />
+                    <input id="Student" name="userType" type="radio" value="Student" checked={userType === 'Student'} onChange={this.handleUserTypeChange} />
                     <label>Student</label>
-                    <input id="Owner" name="userType" type="radio" value="Owner" checked={this.state.userType === 'Owner'} onChange={this.handleUserTypeChange} />
+                    <input id="Owner" name="userType" type="radio" value="Owner" checked={userType === 'Owner'} onChange={this.handleUserTypeChange} />
                     <label>Owner</label>
                 </div>
                 <div className="mb-3">
