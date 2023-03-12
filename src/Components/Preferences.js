@@ -52,6 +52,18 @@ const interestOptions = [{value: 'Gym', label: 'Gym'}, {value: 'Music', label: '
     value: 'Reading', label: 'Reading'
 }, ,];
 
+
+const nationalityOptions = [{value: 'South Asian', label: 'South Asian'},
+    {value: 'Arab', label: 'Arab'},
+    {value: 'Latin American', label: 'Latin American'},
+    {value: 'Korean', label: 'Korean'},
+    {value: 'Japanese', label: 'Japanese'},
+    { value: 'Chinese',  label: 'Chinese'},
+    { value: 'Filipino', label: 'Filipino'},
+    { value: 'South East Asian', label: 'South East Asian'},
+    { value: 'American', label: 'American'},
+    { value: 'European', label: 'European'},];
+
 function Preferences() {
     const [selectedOption1, setSelectedOption1] = useState(null);
     const [selectedOption2, setSelectedOption2] = useState(null);
@@ -59,6 +71,7 @@ function Preferences() {
     const [selectedOption4, setSelectedOption4] = useState(null);
     const [selectedOption5, setSelectedOption5] = useState(null);
     const [selectedOption6, setSelectedOption6] = useState(null);
+    const [selectedOption7, setSelectedOption7] = useState(null);
     const [multiSelectedOptions, setMultiSelectedOptions] = useState([]);
     const handleSingleSelectChange1 = (option) => {
         setSelectedOption1(option);
@@ -78,6 +91,9 @@ function Preferences() {
     const handleSingleSelectChange6 = (option) => {
         setSelectedOption6(option);
     };
+    const handleSingleSelectChange7 = (option) => {
+        setSelectedOption7(option);
+    };
     const handleMultiSelectChange = (options) => {
         setMultiSelectedOptions(options);
     };
@@ -88,10 +104,23 @@ function Preferences() {
                 <h2>Enter your preferences to find an ideal roomate</h2>
                 <form className="form">
                     <label htmlFor="single-select-input1">Select University:</label>
+
+
                     <Select
                         id="single-select-input1" options={options} value={selectedOption1}
                         onChange={handleSingleSelectChange1}
                         className="react-select-container" classNamePrefix="react-select"/>
+
+
+                    <label htmlFor="single-select-input7">Select Nationality:</label>
+
+
+                    <Select
+                        id="single-select-input7" options={nationalityOptions} value={selectedOption7}
+                        onChange={handleSingleSelectChange7}
+                        className="react-select-container" classNamePrefix="react-select"/>
+
+
                     <label htmlFor="single-select-input2">Select
                         Food Preference:
                     </label>
