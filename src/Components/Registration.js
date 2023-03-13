@@ -32,7 +32,7 @@ const RegistrationForm = () => {
         const form = event.currentTarget;
         event.preventDefault();
 
-        if (selectedOption === 'option2' &&  data.ownerType === 'Select type') {
+        if (selectedOption === 'option2' && data.ownerType === 'Select type') {
             alert('Please select a type.');
             return;
         }
@@ -64,30 +64,31 @@ const RegistrationForm = () => {
             event.stopPropagation();
             alert('Passwords do not match!');
         } else {
-             if (selectedOption === 'option1') {
-                 //     axios.get('http://localhost:8080/student/email', {params: {email: data.email}})
-                 //         .then(response => {
-                 //             if (response.data.exists) {
-                 //                 alert('Email is already registered. Please use a different email.');
-                 //             } else {
-                 axios.post('http://localhost:8080/student/create', {
-                     firstName: data.firstname,
-                     lastName: data.lastname,
-                     email: data.email,
-                     password: data.password,
-                     contactNo: data.contact,
-                     offerLetter: data.offerLetter,
-                 })
-                     .then((response) => {
-                         console.log(response.data);
-                         form.reset();
-                         alert('Student Successfully registered!');
-                         window.location.href = '/home';
-                     })
-                     .catch((error) => {
-                         console.error('Error:', error);
-                     });
-             //}
+            if (selectedOption === 'option1') {
+                // axios.get('http://localhost:8080/student', {params: {email: data.email}})
+                //     .then(response => {
+                //         if (response.data.exists) {
+                //             alert('Email is already registered. Please use a different email.');
+                //         }
+                        // else {
+                            axios.post('http://localhost:8080/student/create', {
+                                firstName: data.firstname,
+                                lastName: data.lastname,
+                                email: data.email,
+                                password: data.password,
+                                contactNo: data.contact,
+                                offerLetter: data.offerLetter,
+                            })
+                                .then((response) => {
+                                    console.log(response.data);
+                                    form.reset();
+                                    alert('Student Successfully registered!');
+                                    window.location.href = '/home';
+                                })
+                                .catch((error) => {
+                                    console.error('Error:', error);
+                                });
+
                         // setValidated(true);
                         // setData({
                         //     firstname: '',
@@ -98,17 +99,17 @@ const RegistrationForm = () => {
                         //     contact: '',
                         //     offerLetter: '',
                         // });
-                    // })
-                    // .catch(error => {
-                    //     console.error('Error:', error);
-                    // });
-            }
-             else {
-            //     axios.get('http://localhost:8080/owner', {params: {email: data.email}})
-            //         .then(response => {
-            //             if (response.data.exists) {
-            //                 alert('Email is already registered. Please use a different email.');
-            //             } else {
+                        // })
+                        // .catch(error => {
+                        //     console.error('Error:', error);
+                        // });
+                    //});
+            } else {
+                // axios.get('http://localhost:8080/owner/login', {params: {email: data.email}})
+                //     .then(response => {
+                //         if (response.data.exists) {
+                //             alert('Email is already registered. Please use a different email.');
+                //         } else {
                             axios.post('http://localhost:8080/owner/create', {
                                 firstName: data.firstname,
                                 lastName: data.lastname,
@@ -137,12 +138,14 @@ const RegistrationForm = () => {
                             //     ownerType: '',
                             // });
 
-                        }
-                    //})
-            //         .catch(error => {
-            //             console.error('Error:', error);
-            //         });
-            // }
+                //        }
+                        //})
+                        //         .catch(error => {
+                        //             console.error('Error:', error);
+                        //         });
+                        // }
+                  //  });
+            }
         }
     };
         return (

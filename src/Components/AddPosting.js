@@ -6,12 +6,15 @@ class AddPost extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            type: '',
             image: [],
             description: '',
             Rent: '',
             address: '',
             city: '',
-            province: '',
+            pincode: '',
+            category: '',
+            email: '',
             error: '',
         };
 
@@ -45,7 +48,7 @@ class AddPost extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const {image, description, Rent, address, city, province} = this.state;
+        const {type, image, description, Rent, address, city, pincode, category, email} = this.state;
 
         // Get the current date
         const currentDate = new Date();
@@ -63,12 +66,15 @@ class AddPost extends React.Component {
                     for (let i = 0; i < image.length; i++) {
                         formData.append('image', image[i]);
                     }
+                    formData.append('type', type);
                     formData.append('description', description);
                     formData.append('Rent', Rent);
                     formData.append('address', address);
                     formData.append('city', city);
-                    formData.append('province', province);
+                    formData.append('pincode', pincode);
                     formData.append('date', formattedDate);
+                    formData.append('category', category);
+                    formData.append('email', email);
                     formData.append('ownerId', ownerId);
 
                     axios
@@ -101,13 +107,24 @@ class AddPost extends React.Component {
     render() {
         const { error } = this.state;
         return (
-             <div className="auth-wrapper">
+            <div className="auth-wrapper">
                 <div className="form-container">
                     <div className="auth-inner">
                         <h2 className="text-center mb-3">
                             Add a Post
                         </h2>
                         <form onSubmit={this.handleSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="type">
+                                    Type
+                                </label>
+                                <select className="form-control" id="type" name="type" onChange={this.handleChange} required>
+                                    <option value="">Select Type</option>
+                                    <option value="apartment">Apartment</option>
+                                    <option value="condo">Condo</option>
+                                    <option value="townhouse">Townhouse</option>
+                                </select>
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="image">
                                     Images
@@ -161,27 +178,38 @@ class AddPost extends React.Component {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="city">
-                                    City
+                                <label htmlFor="pincode">
+                                    Pincode
                                 </label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="city"
-                                    name="city"
+                                    id="pincode"
+                                    name="pincode"
+                                    maxLength="6"
                                     onChange={this.handleChange}
                                     required
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="province">
-                                    Province
+                                <label htmlFor="category">
+                                    Category
+                                </label>
+                                <select className="form-control" id="category" name="category" onChange={this.handleChange} required>
+                                    <option value="">Select Category</option>
+                                    <option value="lease">Lease</option>
+                                    <option value="roommate">Roommate</option>
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email">
+                                    Email to be contacted
                                 </label>
                                 <input
-                                    type="text"
+                                    type="email"
                                     className="form-control"
-                                    id="province"
-                                    name="province"
+                                    id="email"
+                                    name="email"
                                     onChange={this.handleChange}
                                     required
                                 />
@@ -200,4 +228,4 @@ class AddPost extends React.Component {
     }
 
 }
-    export default AddPost;
+export default AddPost;
