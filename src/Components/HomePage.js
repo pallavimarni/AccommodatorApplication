@@ -11,8 +11,8 @@ function HomePage() {
                     alt="First slide"
                 />
                 <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3>ACCOMMODATOR </h3>
+                    <p>Where finding a place to stay is hassle-free</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -22,8 +22,8 @@ function HomePage() {
                     alt="Second slide"
                 />
                 <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h3>ACCOMMODATOR</h3>
+                    <p>Let us take the stress out of finding your student accommodation</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -33,8 +33,8 @@ function HomePage() {
                     alt="Third slide"
                 />
                 <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <h3>ACCOMMODATOR</h3>
+                    <p>Find your perfect home away from home</p>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
@@ -78,7 +78,7 @@ function HomePage() {
                             <Card.Text>
                                 Newcomers to Canada ‘most vulnerable’ to rental scams
                             </Card.Text>
-                            <Button variant="primary">Go somewhere</Button>
+                            <Button variant="primary" href={"https://globalnews.ca/news/9532094/newcomer-rental-scam-calgary/"}>Read</Button>
                         </Card.Body>
                     </Card>
                 </div>

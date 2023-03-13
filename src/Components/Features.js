@@ -1,75 +1,79 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
-const FeaturesData = [
-    {
-        id: 1,
-        title: 'Roommate Finder',
-        image: 'card-image-1.jpg',
-        description: 'Content for Card 1',
-        buttonLabel: 'Button 1',
-        buttonLink: 'https://example.com/button-1',
-    },
-    {
-        id: 2,
-        title: 'Add Posting',
-        image: 'card-image-2.jpg',
-        description: 'Content for Card 2',
-        buttonLabel: 'Button 2',
-        buttonLink: '/AddPosting',
-    },
-    {
-        id: 3,
-        title: 'See Posting',
-        image: 'card-image-3.jpg',
-        description: 'Content for Card 3',
-        buttonLabel: 'Button 3',
-        buttonLink: 'https://example.com/button-3',
-    },
-    {
-        id: 4,
-        title: 'Map',
-        image: 'card-image-4.jpg',
-        description: 'Content for Card 4',
-        buttonLabel: 'Button 4',
-        buttonLink: 'https://example.com/button-4',
-    },
-    {
-        id: 5,
-        title: 'See Favourites',
-        image: 'card-image-5.jpg',
-        description: 'Content for Card 5',
-        buttonLabel: 'Button 5',
-        buttonLink: 'https://example.com/button-5',
-    },
-    /*{
-        id: 6,
-        title: 'Card 6',
-        image: 'card-image-6.jpg',
-        description: 'Content for Card 6',
-        buttonLabel: 'Button 6',
-        buttonLink: 'https://example.com/button-6',
-    },*/
-];
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+
 function Features() {
-    return (<div className="auth-wrapper">
-        <div className="container">
-            <div className="row">
-                {FeaturesData.map((card) => (
-                    <div className="col-md-4 mb-4" key={card.id}>
-                        <Card>
-                            <Card.Img variant="top" src={card.image} />
-                            <Card.Body>
-                                <Card.Title>{card.title}</Card.Title>
-                                <Card.Text>{card.description}</Card.Text>
-                                <Button variant="primary" href={card.buttonLink}>
-                                    {card.buttonLabel}
-                                </Button>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                ))}
-            </div>
+    const cards = [
+        {
+            id: 1,
+            title: 'Add a post',
+            description: 'Click to add posting for the accommodation',
+            image:'https://res.cloudinary.com/essential-living/image/upload/ar_1.7772511848341233,c_fill,g_auto,w_1920/f_auto/q_auto/v1/Developments/Union%20Wharf/Apartments/3%20Bed/union-wharf-3-bed-wh03_12?_a=ATO2BAA0',
+            style:' width:200px, height:200px }}',
+            buttonLabel: 'Click here',
+            buttonLink: '/AddPosting',
+        },
+        {
+            id: 2,
+            title: 'Roommate Matching',
+            description: 'Click to find a roommate that shares your interests.',
+            image:'https://www.udr.com/globalassets/corporate/other/roommatefinder/roommatefinder_logo_final.png',
+            buttonLabel: 'Click here',
+            buttonLink: '/preferences',
+
+        },
+        {
+            id: 3,
+            title: 'See Listings',
+            description: 'Click to see all the available listings',
+            image:'https://cdn.w600.comps.canstockphoto.com/new-listing-stamp-eps-vector_csp32695784.jpg',
+            buttonLabel: 'Click here',
+            buttonLink: '/ShowPosting',
+
+        },
+        {
+            id: 4,
+            title: 'Map',
+            description: 'Click to see available listings on a map',
+            image:'https://media.istockphoto.com/id/176022505/photo/halifax-nova-scotia-canada-on-a-map.jpg?s=1024x1024&w=is&k=20&c=03_5xhwEj6UvrQeHtOqrjyhlP_zHGudJDMyLtDIOfcA=',
+            buttonLabel: 'Click here',
+            buttonLink: '',
+
+        },
+        {
+            id: 5,
+            title: 'See favorites',
+            description: 'Click to see postings added to your favorites',
+            image:'https://cdn.thememylogin.com/uploads/edd/2019/03/favorites.png',
+            buttonLabel: 'Click here',
+            buttonLink: '',
+
+        },
+    ];
+
+    return (
+        <div className="auth-wrapper">
+            <div className="form-container">
+
+        <div className="card-deck">
+            {cards.map((card) => (
+                <Card key={card.id}>
+                    <Card.Img variant="top" src={card.image} alt={card.title} style={{ width: '610px', height: '270px' }}/>
+                    <Card.Body>
+                        <Card.Title>{card.title}</Card.Title>
+                        <Card.Text>{card.description}</Card.Text>
+                        <Button variant="primary" href={card.buttonLink}>
+                            {card.buttonLabel}
+                        </Button>
+                    </Card.Body>
+                </Card>
+            ))}
         </div>
-    </div>);
+        </div>
+            </div>
+
+
+    );
 }
+
 export default Features;

@@ -8,16 +8,20 @@ import HomePage from './Components/HomePage'
 import Preferences from "./Components/Preferences";
 import Features from "./Components/Features";
 import AddPosting from './Components/AddPosting';
+import ShowPosting from "./Components/ShowPosting";
 
 //import Home from './Components/Posting'
 
 function App() {
     return (
         <Router>
+            <br/>
+            <br/>
             <div className="App">
                 <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                     <div className="container">
                         <Link className="navbar-brand" to={'/'}>
+                            <img src="https://www.freepnglogos.com/uploads/logo-home-png/house-logo-design-vector-real-estate-logo-photos-25.png" style={{ width: '70px', height: '70px' }} />
                             ACCOMMODATOR
                         </Link>
                         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -32,11 +36,7 @@ function App() {
                                         Sign up
                                     </Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to={'/preferences'}>
-                                        Preferences
-                                    </Link>
-                                </li>
+
                                 <li className="nav-item">
                                     <Link className="nav-link" to={'/Features'}>
                                         Features
@@ -53,13 +53,15 @@ function App() {
                                 <Route path="/Preferences" element={<Preferences />} />
                                 <Route path="/Features" element={<Features />} />
                                 <Route path="/AddPosting" element={<AddPosting />} />
+                                <Route path="/ShowPosting" element={<ShowPosting />} />
                             </Routes>
-
+<div>
+    <br/>
                 <footer className="bg-light py-4">
                     <div className="container">
                         <div className="row">
                             <div className="col-md-6">
-                                <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+                                <p>&copy; 2023 Accommodator. All rights reserved.</p>
                             </div>
                             <div className="col-md-6">
                                 <ul className="list-inline text-md-right">
@@ -73,7 +75,8 @@ function App() {
                 </footer>
             </div>
 
+            </div>
         </Router>
     )
 }
-export default App
+export default App;
