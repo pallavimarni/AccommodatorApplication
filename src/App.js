@@ -8,6 +8,7 @@ import HomePage from './Components/HomePage'
 import Preferences from "./Components/Preferences";
 import Features from "./Components/Features";
 import AddPosting from './Components/AddPosting';
+import ShowPosting from "./Components/ShowPosting";
 
 //import Home from './Components/Posting'
 
@@ -52,6 +53,7 @@ function App() {
                                 <Route path="/Preferences" element={<Preferences />} />
                                 <Route path="/Features" element={<Features />} />
                                 <Route path="/AddPosting" element={<AddPosting />} />
+                                <Route path="/ShowPosting" element={<ShowPosting />} />
                             </Routes>
 <div>
     <br/>
@@ -77,4 +79,4 @@ function App() {
         </Router>
     )
 }
-export default App
+export default App;
