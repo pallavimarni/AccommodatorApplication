@@ -9,6 +9,7 @@ import Preferences from "./Components/Preferences";
 import Features from "./Components/Features";
 import AddPosting from './Components/AddPosting';
 import ShowPosting from "./Components/ShowPosting";
+import Admin from "./Components/Admin";
 
 //import Home from './Components/Posting'
 
@@ -54,6 +55,7 @@ function App() {
                                 <Route path="/Features" element={<Features />} />
                                 <Route path="/AddPosting" element={<AddPosting />} />
                                 <Route path="/ShowPosting" element={<ShowPosting />} />
+                                <Route path="/adminHome" element={<Admin />} />
                             </Routes>
 <div>
     <br/>
