@@ -11,14 +11,14 @@ public class Owner {
     private String email;
     private String firstName;
     private String lastName;
-    private String contactNo;
+    private Long contactNo;
     private String ownerType;
     private String password;
 
     public Owner() {
     }
 
-    public Owner(Integer ownerId, String email, String firstName, String lastName, String contactNo, String ownerType, String password) {
+    public Owner(Integer ownerId, String email, String firstName, String lastName, Long contactNo, String ownerType, String password) {
         this.ownerId = ownerId;
         this.email = email;
         this.firstName = firstName;
@@ -60,11 +60,11 @@ public class Owner {
         this.lastName = lastName;
     }
 
-    public String getContactNo() {
+    public Long getContactNo() {
         return contactNo;
     }
 
-    public void setContactNo(String contactNo) {
+    public void setContactNo(Long contactNo) {
         this.contactNo = contactNo;
     }
 

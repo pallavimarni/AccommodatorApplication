@@ -10,7 +10,6 @@ public class OwnerController {
     @Autowired
     OwnerService OwnerService;
     @CrossOrigin
-
     @GetMapping("/get/{id}")
     public Owner getOwnerById(@PathVariable("id") int id) {
         return OwnerService.getOwnerById(id);

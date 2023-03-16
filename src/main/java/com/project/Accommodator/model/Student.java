@@ -9,16 +9,17 @@ public class Student {
     private int studentId;
     private String firstName;
     private String lastName;
-    private String offerLetter;
+    private byte[] offerLetter;
     private String email;
     private String password;
     private int isApproved;
-    private int contactNo;
+    private Long contactNo;
+    private int isRevoked;
 
     public Student() {
     }
 
-    public Student(int studentId, String firstName, String lastName, String offerLetter, String email, String password, int isApproved, int contactNo) {
+    public Student(int studentId, String firstName, String lastName, byte[] offerLetter, String email, String password, int isApproved, Long contactNo, int isRevoked) {
         this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,6 +28,7 @@ public class Student {
         this.password = password;
         this.isApproved = isApproved;
         this.contactNo = contactNo;
+        this.isRevoked = isRevoked;
     }
 
     public int getStudentId() {
@@ -53,11 +55,11 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public String getOfferLetter() {
+    public byte[] getOfferLetter() {
         return offerLetter;
     }
 
-    public void setOfferLetter(String offerLetter) {
+    public void setOfferLetter(byte[] offerLetter) {
         this.offerLetter = offerLetter;
     }
 
@@ -85,11 +87,19 @@ public class Student {
         this.isApproved = isApproved;
     }
 
-    public int getContactNo() {
+    public Long getContactNo() {
         return contactNo;
     }
 
-    public void setContactNo(int contactNo) {
+    public void setContactNo(Long contactNo) {
         this.contactNo = contactNo;
+    }
+
+    public int getIsRevoked() {
+        return isRevoked;
+    }
+
+    public void setIsRevoked(int isRevoked) {
+        this.isRevoked = isRevoked;
     }
 }

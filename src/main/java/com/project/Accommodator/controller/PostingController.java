@@ -1,5 +1,6 @@
 package com.project.Accommodator.controller;
 import com.project.Accommodator.model.Posting;
+import com.project.Accommodator.model.Student;
 import com.project.Accommodator.service.PostingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,5 +20,10 @@ public class PostingController {
     @PostMapping("/create")
     public Posting createPosting(@RequestBody Posting Posting) {
         return PostingService.createPosting(Posting);
+    }
+    @CrossOrigin
+    @GetMapping("/get/all")
+    public Iterable<Posting> getAllPosts() {
+        return PostingService.getAllPosts();
     }
 }
