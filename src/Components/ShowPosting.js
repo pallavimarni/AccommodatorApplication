@@ -1,72 +1,33 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { HeartFill } from 'react-bootstrap-icons';
+import axios from 'axios';
 
-function ShowPosting(props) {
+function ShowPosting() {
+    const [posts, setPosts] = React.useState([]);
 
-    /*const { posts } = props;*/
-    const posts=[
-        {
-            id: 1,
-            image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-            title: "Cozy apartment in downtown",
-            description: "A lovely apartment with a great view of the city",
-            rent: "$1000/month",
-            address: "123 Main St",
-            pincode: "12345",
-            category: "Apartment",
-            email: "my880578@dal.ca"
-        },
-        {
-            id: 2,
-            image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-            title: "Cozy apartment in downtown",
-            description: "A lovely apartment with a great view of the city",
-            rent: "$1000/month",
-            address: "123 Main St",
-            pincode: "12345",
-            category: "Apartment"
-        },
-        {
-            id: 2,
-            image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-            title: "Cozy apartment in downtown",
-            description: "A lovely apartment with a great view of the city",
-            rent: "$1000/month",
-            address: "123 Main St",
-            pincode: "12345",
-            category: "Apartment"
-        },
-        {
-            id: 2,
-            image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-            title: "Cozy apartment in downtown",
-            description: "A lovely apartment with a great view of the city",
-            rent: "$1000/month",
-            address: "123 Main St",
-            pincode: "12345",
-            category: "Apartment"
-        },{
-            id: 2,
-            image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-            title: "Cozy apartment in downtown",
-            description: "A lovely apartment with a great view of the city",
-            rent: "$1000/month",
-            address: "123 Main St",
-            pincode: "12345",
-            category: "Apartment"
-        },{
-            id: 2,
-            image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-            title: "Cozy apartment in downtown",
-            description: "A lovely apartment with a great view of the city",
-            rent: "$1000/month",
-            address: "123 Main St",
-            pincode: "12345",
-            category: "Apartment"
-        }
-    ];
+    React.useEffect(() => {
+        axios.get('http://localhost:8080/posting/get/all', {
+            image: posts.image,
+            title: posts.title,
+            description: posts.description,
+            rent: posts.rent,
+            address: posts.address,
+            pincode: posts.pincode,
+            category: posts.category,
+            email: posts.email
+        })
+            .then(response => {
+                setPosts(response.data);
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
 
+    function handleConnectClick(email) {
+        console.log('Contact with owner on ', email);
+    }
     return (
         <div className="auth-wrapper">
             <div className="mt-5">
@@ -106,21 +67,20 @@ function ShowPosting(props) {
                         <h2 className="text-center text-uppercase text-BLACK mb-4">Latest Postings</h2>
 
                         <Container>
-                            {posts.map((post, index) => (
+                            {posts.map((posts, index) => (
                                 index % 3 === 0 && (
                                     <Row key={index} className="my-3">
                                         <Col>
                                             <Card>
 
-                                                <Card.Img variant="top" src={post.image} />
+                                                <Card.Img variant="top" src={posts.image} />
                                                 <Card.Body>
-
-                                                    <Card.Title>{post.title}</Card.Title>
-                                                    <Card.Text>{post.description}</Card.Text>
-                                                    <Card.Text>Rent: {post.rent}</Card.Text>
-                                                    <Card.Text>Address: {post.address}, {post.pincode}</Card.Text>
-                                                    <Card.Text>Category: {post.category}</Card.Text>
-                                                    <Button variant="primary" onClick={() => handleConnectClick(post.email)}>Connect with owner</Button>
+                                                    <Card.Title>{posts.title}</Card.Title>
+                                                    <Card.Text>{posts.description}</Card.Text>
+                                                    <Card.Text>Rent: {posts.rent}</Card.Text>
+                                                    <Card.Text>Address: {posts.address}, {posts.pincode}</Card.Text>
+                                                    <Card.Text>Category: {posts.category}</Card.Text>
+                                                    <Button variant="primary" onClick={() => handleConnectClick(posts.email)}>Connect with owner</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -134,7 +94,7 @@ function ShowPosting(props) {
                                                         <Card.Text>Rent: {posts[index + 1].rent}</Card.Text>
                                                         <Card.Text>Address: {posts[index + 1].address}, {posts[index + 1].pincode}</Card.Text>
                                                         <Card.Text>Category: {posts[index + 1].category}</Card.Text>
-                                                        <Button variant="primary" onClick={() => handleConnectClick(post.email)}>Connect with owner</Button>
+                                                        <Button variant="primary" onClick={() => handleConnectClick(posts.email)}>Connect with owner</Button>
                                                     </Card.Body>
                                                 </Card>
                                             </Col>
@@ -149,7 +109,7 @@ function ShowPosting(props) {
                                                         <Card.Text>Rent: {posts[index + 2].rent}</Card.Text>
                                                         <Card.Text>Address: {posts[index + 2].address}, {posts[index + 2].pincode}</Card.Text>
                                                         <Card.Text>Category: {posts[index + 2].category}</Card.Text>
-                                                        <Button variant="primary" onClick={() => handleConnectClick(post.email)}>Connect with owner</Button>
+                                                        <Button variant="primary" onClick={() => handleConnectClick(posts.email)}>Connect with owner</Button>
                                                     </Card.Body>
                                                 </Card>
                                             </Col>
@@ -169,3 +129,65 @@ function ShowPosting(props) {
 export default ShowPosting;
 
 
+
+/*const posts=[
+    {
+        id: 1,
+        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
+        title: "Cozy apartment in downtown",
+        description: "A lovely apartment with a great view of the city",
+        rent: "$1000/month",
+        address: "123 Main St",
+        pincode: "12345",
+        category: "Apartment",
+        email: "my880578@dal.ca"
+    },
+    {
+        id: 2,
+        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
+        title: "Cozy apartment in downtown",
+        description: "A lovely apartment with a great view of the city",
+        rent: "$1000/month",
+        address: "123 Main St",
+        pincode: "12345",
+        category: "Apartment"
+    },
+    {
+        id: 2,
+        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
+        title: "Cozy apartment in downtown",
+        description: "A lovely apartment with a great view of the city",
+        rent: "$1000/month",
+        address: "123 Main St",
+        pincode: "12345",
+        category: "Apartment"
+    },
+    {
+        id: 2,
+        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
+        title: "Cozy apartment in downtown",
+        description: "A lovely apartment with a great view of the city",
+        rent: "$1000/month",
+        address: "123 Main St",
+        pincode: "12345",
+        category: "Apartment"
+    },{
+        id: 2,
+        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
+        title: "Cozy apartment in downtown",
+        description: "A lovely apartment with a great view of the city",
+        rent: "$1000/month",
+        address: "123 Main St",
+        pincode: "12345",
+        category: "Apartment"
+    },{
+        id: 2,
+        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
+        title: "Cozy apartment in downtown",
+        description: "A lovely apartment with a great view of the city",
+        rent: "$1000/month",
+        address: "123 Main St",
+        pincode: "12345",
+        category: "Apartment"
+    }
+];*/

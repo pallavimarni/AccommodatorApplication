@@ -65,51 +65,30 @@ const RegistrationForm = () => {
             alert('Passwords do not match!');
         } else {
             if (selectedOption === 'option1') {
-                // axios.get('http://localhost:8080/student', {params: {email: data.email}})
-                //     .then(response => {
-                //         if (response.data.exists) {
-                //             alert('Email is already registered. Please use a different email.');
-                //         }
-                        // else {
-                            axios.post('http://localhost:8080/student/create', {
-                                firstName: data.firstname,
-                                lastName: data.lastname,
-                                email: data.email,
-                                password: data.password,
-                                contactNo: data.contact,
-                                offerLetter: data.offerLetter,
-                            })
-                                .then((response) => {
-                                    console.log(response.data);
-                                    form.reset();
-                                    alert('Student Successfully registered!');
-                                    window.location.href = '/home';
-                                })
-                                .catch((error) => {
-                                    console.error('Error:', error);
-                                });
+                const formData = new FormData();
+formData.append('firstName', data.firstname);
+formData.append('lastName', data.lastname);
+formData.append('email', data.email);
+formData.append('password', data.password);
+formData.append('contactNo', data.contact);
+const fileInput = document.querySelector('#offerLetter');
+const file = fileInput.files[0];
+formData.append('offerLetter', file);
 
-                        // setValidated(true);
-                        // setData({
-                        //     firstname: '',
-                        //     lastname: '',
-                        //     email: '',
-                        //     password: '',
-                        //     confirmpassword: '',
-                        //     contact: '',
-                        //     offerLetter: '',
-                        // });
-                        // })
-                        // .catch(error => {
-                        //     console.error('Error:', error);
-                        // });
-                    //});
+axios.post('http://localhost:8080/student/create', formData, {
+})
+.then((response) => {
+    console.log(response.data);
+    form.reset();
+    alert('Student Successfully registered!');
+    window.location.href = '/features';
+})
+.catch((error) => {
+    console.error('Error:', error);
+});
+
+                
             } else {
-                // axios.get('http://localhost:8080/owner/login', {params: {email: data.email}})
-                //     .then(response => {
-                //         if (response.data.exists) {
-                //             alert('Email is already registered. Please use a different email.');
-                //         } else {
                             axios.post('http://localhost:8080/owner/create', {
                                 firstName: data.firstname,
                                 lastName: data.lastname,
@@ -127,24 +106,6 @@ const RegistrationForm = () => {
                                 .catch((error) => {
                                     console.error('Error:', error);
                                 });
-                            // setValidated(true);
-                            // setData({
-                            //     firstname: '',
-                            //     lastname: '',
-                            //     email: '',
-                            //     password: '',
-                            //     confirmpassword: '',
-                            //     contact: '',
-                            //     ownerType: '',
-                            // });
-
-                //        }
-                        //})
-                        //         .catch(error => {
-                        //             console.error('Error:', error);
-                        //         });
-                        // }
-                  //  });
             }
         }
     };
@@ -152,7 +113,7 @@ const RegistrationForm = () => {
             <div className="auth-wrapper">
                 <div className="form-container">
                     <div className="auth-inner">
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form noValidate validated={validated} onSubmit={handleSubmit} enctype="multipart/form-data">
                 <Form.Group>
                     <h3>Sign Up</h3>
 

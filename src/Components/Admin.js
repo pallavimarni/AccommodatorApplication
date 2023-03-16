@@ -12,6 +12,7 @@ function DataTable() {
     axios.get('http://localhost:8080/student/get/all')
       .then(response => {
         setData(response.data);
+        console.log(response.data);
       })
       .catch(error => console.error(error));
   }
@@ -45,13 +46,13 @@ function DataTable() {
         </tr>
       </thead>
       <tbody>
-        {data.map(item => (
+      {data.map(item => (
           <tr key={item.studentId}>
             <td>{item.studentId}</td>
             <td>{item.firstName}</td>
             <td>{item.lastName}</td>
             <td>{item.email}</td>
-            <td><img src={item.offerLetter} alt="User avatar" /></td>
+            <td><img src={URL.createObjectURL(new Blob([data.offerLetter]))} alt="User avatar" /></td>
             <td>
               <button onClick={() => handleApprove(item.studentId)}>Approve</button>
               <button onClick={() => handleReject(item.studentId)}>Reject</button>
