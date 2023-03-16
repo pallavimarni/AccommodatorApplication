@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Select from 'react-select';
+import axios from 'axios';
 import './Preferences.css';
 
 const options = [{value: 'Dalhousie University', label: 'Dalhousie University'}, {
@@ -97,12 +98,31 @@ function Preferences() {
     const handleMultiSelectChange = (options) => {
         setMultiSelectedOptions(options);
     };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData();
+         formData.append('university', selectedOption1.value);
+         formData.append('foodPreference', selectedOption2.value);
+         formData.append('isSmoking',selectedOption3.value);
+         formData.append('isDrinking', selectedOption4.value);
+         formData.append('livingSpace', selectedOption5.value);
+         formData.append('studyEnvironment', selectedOption6.value);
+         formData.append('nationality', selectedOption7.value);
+        axios.post('http://localhost:8080/ownerpref/match',formData)
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      };
+    
     return (<div className="auth-wrapper">
         <div className="form-container">
             <div className="auth-inner">
 
                 <h2>Enter your preferences to find an ideal roomate</h2>
-                <form className="form">
+                <form className="form"  onSubmit={handleSubmit}>
                     <label htmlFor="single-select-input1">Select University:</label>
 
 
@@ -170,7 +190,8 @@ function Preferences() {
             </div>
         </div>
 
-    </div>);
+    </div>
+    );
 }
 
 export default Preferences;
