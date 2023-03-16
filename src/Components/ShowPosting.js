@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 function ShowPosting() {
+
     const [posts, setPosts] = React.useState([]);
 
     React.useEffect(() => {
@@ -67,56 +68,37 @@ function ShowPosting() {
                         <h2 className="text-center text-uppercase text-BLACK mb-4">Latest Postings</h2>
 
                         <Container>
-                            {posts.map((posts, index) => (
-                                index % 3 === 0 && (
-                                    <Row key={index} className="my-3">
-                                        <Col>
-                                            <Card>
-
-                                                <Card.Img variant="top" src={posts.image} />
-                                                <Card.Body>
-                                                    <Card.Title>{posts.title}</Card.Title>
-                                                    <Card.Text>{posts.description}</Card.Text>
-                                                    <Card.Text>Rent: {posts.rent}</Card.Text>
-                                                    <Card.Text>Address: {posts.address}, {posts.pincode}</Card.Text>
-                                                    <Card.Text>Category: {posts.category}</Card.Text>
-                                                    <Button variant="primary" onClick={() => handleConnectClick(posts.email)}>Connect with owner</Button>
-                                                </Card.Body>
-                                            </Card>
-                                        </Col>
-                                        {posts[index + 1] && (
-                                            <Col>
+                            {posts.map((post, index) => {
+                                if (index % 3 === 0) {
+                                    const cards = [];
+                                    for (let i = index; i < index + 3 && i < posts.length; i++) {
+                                        const post = posts[i];
+                                        cards.push(
+                                            <Col key={i}>
                                                 <Card>
-                                                    <Card.Img variant="top" src={posts[index + 1].image} />
+                                                    <button className="favorite-button">
+                                                        <i className="fa fa-heart"></i> Add to favorites
+                                                    </button>
+                                                    <Card.Img variant="top" src={post.image} />
                                                     <Card.Body>
-                                                        <Card.Title>{posts[index + 1].title}</Card.Title>
-                                                        <Card.Text>{posts[index + 1].description}</Card.Text>
-                                                        <Card.Text>Rent: {posts[index + 1].rent}</Card.Text>
-                                                        <Card.Text>Address: {posts[index + 1].address}, {posts[index + 1].pincode}</Card.Text>
-                                                        <Card.Text>Category: {posts[index + 1].category}</Card.Text>
-                                                        <Button variant="primary" onClick={() => handleConnectClick(posts.email)}>Connect with owner</Button>
+                                                        <Card.Title>{post.title}</Card.Title>
+                                                        <Card.Text>{post.description}</Card.Text>
+                                                        <Card.Text>Rent: {post.rent}</Card.Text>
+                                                        <Card.Text>Address: {post.address}, {post.pincode}</Card.Text>
+                                                        <Card.Text>Category: {post.category}</Card.Text>
+                                                        <Button variant="primary" onClick={() => handleConnectClick(post.email)}>Connect with owner</Button>
                                                     </Card.Body>
                                                 </Card>
                                             </Col>
-                                        )}
-                                        {posts[index + 2] && (
-                                            <Col>
-                                                <Card>
-                                                    <Card.Img variant="top" src={posts[index + 2].image} />
-                                                    <Card.Body>
-                                                        <Card.Title>{posts[index + 2].title}</Card.Title>
-                                                        <Card.Text>{posts[index + 2].description}</Card.Text>
-                                                        <Card.Text>Rent: {posts[index + 2].rent}</Card.Text>
-                                                        <Card.Text>Address: {posts[index + 2].address}, {posts[index + 2].pincode}</Card.Text>
-                                                        <Card.Text>Category: {posts[index + 2].category}</Card.Text>
-                                                        <Button variant="primary" onClick={() => handleConnectClick(posts.email)}>Connect with owner</Button>
-                                                    </Card.Body>
-                                                </Card>
-                                            </Col>
-                                        )}
-                                    </Row>
-                                )
-                            ))}
+                                        );
+                                    }
+                                    return (
+                                        <Row key={index} className="my-3">
+                                            {cards}
+                                        </Row>
+                                    );
+                                }
+                            })}
                         </Container>
                     </div>
                 </div>
@@ -127,67 +109,3 @@ function ShowPosting() {
                 }
 
 export default ShowPosting;
-
-
-
-/*const posts=[
-    {
-        id: 1,
-        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-        title: "Cozy apartment in downtown",
-        description: "A lovely apartment with a great view of the city",
-        rent: "$1000/month",
-        address: "123 Main St",
-        pincode: "12345",
-        category: "Apartment",
-        email: "my880578@dal.ca"
-    },
-    {
-        id: 2,
-        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-        title: "Cozy apartment in downtown",
-        description: "A lovely apartment with a great view of the city",
-        rent: "$1000/month",
-        address: "123 Main St",
-        pincode: "12345",
-        category: "Apartment"
-    },
-    {
-        id: 2,
-        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-        title: "Cozy apartment in downtown",
-        description: "A lovely apartment with a great view of the city",
-        rent: "$1000/month",
-        address: "123 Main St",
-        pincode: "12345",
-        category: "Apartment"
-    },
-    {
-        id: 2,
-        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-        title: "Cozy apartment in downtown",
-        description: "A lovely apartment with a great view of the city",
-        rent: "$1000/month",
-        address: "123 Main St",
-        pincode: "12345",
-        category: "Apartment"
-    },{
-        id: 2,
-        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-        title: "Cozy apartment in downtown",
-        description: "A lovely apartment with a great view of the city",
-        rent: "$1000/month",
-        address: "123 Main St",
-        pincode: "12345",
-        category: "Apartment"
-    },{
-        id: 2,
-        image: "https://img.staticmb.com/mbcontent//images/uploads/2022/12/Most-Beautiful-House-in-the-World.jpg",
-        title: "Cozy apartment in downtown",
-        description: "A lovely apartment with a great view of the city",
-        rent: "$1000/month",
-        address: "123 Main St",
-        pincode: "12345",
-        category: "Apartment"
-    }
-];*/
