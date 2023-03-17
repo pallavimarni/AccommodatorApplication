@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 class AddPost extends React.Component {
-    ownerId = localStorage.getItem('ownerId');
     constructor(props) {
         super(props);
         this.state = {
@@ -11,7 +10,6 @@ class AddPost extends React.Component {
             description: '',
             Rent: '',
             address: '',
-            city: '',
             pincode: '',
             category: '',
             email: '',
@@ -47,63 +45,38 @@ class AddPost extends React.Component {
     }
 
     handleSubmit(event) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const ownerId = user.studentId;
         event.preventDefault();
-        const {type, image, description, Rent, address, city, pincode, category, email} = this.state;
+        const {type, image, description, rent, address, pincode, category, email} = this.state;
 
         // Get the current date
         const currentDate = new Date();
         const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+        const postingData = {
+            rent: rent,
+            address: address,
+            description: description,
+            date: formattedDate,
+            category: category,
+            image: image.name,
+            ownerId: ownerId,
+            type: type,
+            pincode: pincode,
+            email: email,
+          };
 
-        // Fetch owner ID from the database
-        axios
-            .get('http://localhost:8080/owner/login', {params: {email: localStorage.getItem('email')}})
-            .then((response) => {
-                if (response.status === 200) {
-                    const ownerId = response.data.ownerId;
-
-                    // Create a new post with the owner ID and date
-                    const formData = new FormData();
-                    for (let i = 0; i < image.length; i++) {
-                        formData.append('image', image[i]);
-                    }
-                    formData.append('type', type);
-                    formData.append('description', description);
-                    formData.append('Rent', Rent);
-                    formData.append('address', address);
-                    formData.append('city', city);
-                    formData.append('pincode', pincode);
-                    formData.append('date', formattedDate);
-                    formData.append('category', category);
-                    formData.append('email', email);
-                    formData.append('ownerId', ownerId);
-
-                    axios
-                        .post('http://localhost:8080/Posting', formData, {
-                            headers: {
-                                'Content-Type': 'multipart/form-data',
-                            },
-                        })
-                        .then((response) => {
+                    axios.post('http://localhost:8080/posting/create', postingData).then((response) => {
                             if (response.status === 200) {
-                                // Post creation succeeded, redirect to the homepage
                                 window.location.href = '/home';
                             } else {
-                                // Post creation failed, display an error message
                                 console.error('Post creation failed:', response.data.message);
                             }
                         })
                         .catch((error) => {
                             console.error('An error occurred:', error);
                         });
-                } else {
-                    console.error('Owner not found:', response.data.message);
-                }
-            })
-            .catch((error) => {
-                console.error('An error occurred:', error);
-            });
-    }
-
+                    }
     render() {
         const { error } = this.state;
         return (
@@ -152,13 +125,13 @@ class AddPost extends React.Component {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Rent">
+                                <label htmlFor="rent">
                                     Rent
                                 </label>
                                 <input
                                     type="number"
                                     className="form-control"
-                                    id="Rent"
+                                    id="rent"
                                     name="rent"
                                     onChange={this.handleChange}
                                     required
