@@ -14,12 +14,15 @@ public class Posting {
     private String date;
     private String category;
     private String image;
+    private String type;
+    private String pincode;
+    private String email;
     private Integer ownerId;
 
     public Posting() {
     }
 
-    public Posting(Integer postId, String rent, String address, String description, String date, String category, String image, Integer ownerId) {
+    public Posting(Integer postId, String rent, String address, String description, String date, String category, String image, String type, String pincode, String email, Integer ownerId) {
         this.postId = postId;
         this.rent = rent;
         this.address = address;
@@ -27,6 +30,9 @@ public class Posting {
         this.date = date;
         this.category = category;
         this.image = image;
+        this.type = type;
+        this.pincode = pincode;
+        this.email = email;
         this.ownerId = ownerId;
     }
 
@@ -84,6 +90,30 @@ public class Posting {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getOwnerId() {
