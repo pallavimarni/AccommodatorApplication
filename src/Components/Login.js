@@ -34,6 +34,7 @@ const Login = () => {
             .then((response) => {
                 if (response.status === 200) {
                     console.log(response.data);
+                    localStorage.setItem('user',JSON.stringify(response.data));
                     // authentication succeeded, grant access
                     if (userType === 'option1') {
                         window.location.href = '/Features';
