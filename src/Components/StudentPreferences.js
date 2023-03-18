@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Select from 'react-select';
 import axios from 'axios';
 import './Preferences.css';
+import {Button, Card, Col, Container, Row} from "react-bootstrap";
 
 const options = [{value: 'Dalhousie University', label: 'Dalhousie University'}, {
     value: 'Saint Marys University', label: 'Saint Marys University'
@@ -65,7 +66,7 @@ const nationalityOptions = [{value: 'South Asian', label: 'South Asian'},
     { value: 'American', label: 'American'},
     { value: 'European', label: 'European'},];
 
-function Preferences() {
+function StudentPreferences() {
     const [selectedOption1, setSelectedOption1] = useState(null);
     const [selectedOption2, setSelectedOption2] = useState(null);
     const [selectedOption3, setSelectedOption3] = useState(null);
@@ -116,12 +117,15 @@ function Preferences() {
             console.error(error);
           });
       };
-    
+
+
+
+
     return (<div className="auth-wrapper">
         <div className="form-container">
             <div className="auth-inner">
 
-                <h2>Enter your preferences to find an ideal roomate</h2>
+                <h2>Enter your preferences to find an ideal roommate</h2>
                 <form className="form"  onSubmit={handleSubmit}>
                     <label htmlFor="single-select-input1">Select University:</label>
 
@@ -192,7 +196,7 @@ function Preferences() {
 
     </div>
     );
-}
+                }
 
-export default Preferences;
+export default StudentPreferences;
 

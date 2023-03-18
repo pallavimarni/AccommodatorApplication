@@ -19,7 +19,7 @@ function Features() {
             description: 'Click to find a roommate that shares your interests.',
             image:'https://www.udr.com/globalassets/corporate/other/roommatefinder/roommatefinder_logo_final.png',
             buttonLabel: 'Click here',
-            buttonLink: '/preferences',
+            buttonLink: '/StudentPreferences',
 
         },
         {

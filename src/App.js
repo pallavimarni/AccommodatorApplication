@@ -5,11 +5,15 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Login from './Components/Registration'
 import SignUp from './Components/Login'
 import HomePage from './Components/HomePage'
-import Preferences from "./Components/Preferences";
+import StudentPreferences from "./Components/StudentPreferences";
+import OwnerPreferences from "./Components/OwnerPreferences";
+import SetYourPreferences from "./Components/SetYourPreferences";
 import Features from "./Components/Features";
 import AddPosting from './Components/AddPosting';
 import ShowPosting from "./Components/ShowPosting";
 import Admin from "./Components/Admin";
+import DisplayStudentsAfterPref from "./Components/DisplayStudentsAfterPref";
+import DisplayPostingsAfterPref from "./Components/DisplayPostingsAfterPref";
 
 //import Home from './Components/Posting'
 
@@ -51,11 +55,15 @@ function App() {
                                 <Route exact path="/" element={<HomePage />} />
                                 <Route path="/sign-in" element={<Login />} />
                                 <Route path="/sign-up" element={<SignUp />} />
-                                <Route path="/Preferences" element={<Preferences />} />
+                                <Route path="/StudentPreferences" element={<StudentPreferences />} />
+                                <Route path="/OwnerPreferences" element={<OwnerPreferences />} />
+                                <Route path="/SetYourPreferences" element={<SetYourPreferences />} />
                                 <Route path="/Features" element={<Features />} />
                                 <Route path="/AddPosting" element={<AddPosting />} />
                                 <Route path="/ShowPosting" element={<ShowPosting />} />
                                 <Route path="/adminHome" element={<Admin />} />
+                                <Route path="/DisplayStudentsAfterPref" element={<DisplayStudentsAfterPref />} />
+                                <Route path="/DisplayPostingsAfterPref" element={<DisplayPostingsAfterPref />} />
                             </Routes>
 <div>
     <br/>

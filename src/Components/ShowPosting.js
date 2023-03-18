@@ -31,6 +31,7 @@ function ShowPosting() {
     }
     return (
         <div className="auth-wrapper">
+            <div className="form-container">
             <div className="mt-5">
             <div className="row">
                 <div className="col-md-3">
@@ -103,6 +104,7 @@ function ShowPosting() {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         </div>
     );

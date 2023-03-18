@@ -36,11 +36,11 @@ const Login = () => {
                     console.log(response.data);
                     // authentication succeeded, grant access
                     if (userType === 'option1') {
-                        window.location.href = '/Preferences';
+                        window.location.href = '/Features';
                     }
 
                     else{
-                        window.location.href = '/home';
+                        window.location.href = '/HomePage';
                     }
 
                 } else {
