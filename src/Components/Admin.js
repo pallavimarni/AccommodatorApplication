@@ -1,67 +1,97 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
+import Spinner from 'react-bootstrap/Spinner';
+import Alert from 'react-bootstrap/Alert';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import BootstrapTable from 'react-bootstrap-table-next';
 
 function DataTable() {
-  const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  useEffect(() => {
-    loadData();
-  }, []);
+    useEffect(() => {
+        loadData();
+    }, []);
 
-  function loadData() {
-    axios.get('http://localhost:8080/student/get/all')
-      .then(response => {
-        setData(response.data);
-        console.log(response.data);
-      })
-      .catch(error => console.error(error));
-  }
+    function loadData() {
+        axios
+            .get('http://localhost:8080/student/get/all')
+            .then((response) => {
+                setData(response.data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setError(error);
+                setLoading(false);
+            });
+    }
 
-  function handleApprove(studentId) {
-    axios.put(`http://localhost:8080/admin/approve/${studentId}`, { status: 'approved' })
-      .then(response => {
-        loadData(); // Reload data after action
-      })
-      .catch(error => console.error(error));
-  }
+    function handleApprove(studentId) {
+        axios
+            .put(`http://localhost:8080/admin/approve/${studentId}`, { status: 'approved' })
+            .then((response) => {
+                loadData(); // Reload data after action
+            })
+            .catch((error) => {
+                setError(error);
+            });
+    }
 
-  function handleReject(studentId) {
-    axios.put(`http://localhost:8080/admin/reject/${studentId}`, { status: 'rejected' })
-    .then(response => {
-      loadData(); // Reload data after action
-    })
-    .catch(error => console.error(error));
-  }
+    function handleReject(studentId) {
+        axios
+            .put(`http://localhost:8080/admin/reject/${studentId}`, { status: 'rejected' })
+            .then((response) => {
+                loadData(); // Reload data after action
+            })
+            .catch((error) => {
+                setError(error);
+            });
+    }
 
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Offer Letter</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-      {data.map(item => (
-          <tr key={item.studentId}>
-            <td>{item.studentId}</td>
-            <td>{item.firstName}</td>
-            <td>{item.lastName}</td>
-            <td>{item.email}</td>
-            <td><img src={URL.createObjectURL(new Blob([data.offerLetter]))} alt="User avatar" /></td>
-            <td>
-              <button onClick={() => handleApprove(item.studentId)}>Approve</button>
-              <button onClick={() => handleReject(item.studentId)}>Reject</button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
+    const columns = [
+        { dataField: 'studentId', text: 'ID' },
+        { dataField: 'firstName', text: 'First Name' },
+        { dataField: 'lastName', text: 'Last Name' },
+        { dataField: 'email', text: 'Email' },
+        { dataField: 'offerLetter', text: 'Offer Letter', formatter: (cell) => <a href={URL.createObjectURL(new Blob([cell]))} target="_blank" rel="noopener noreferrer"><Image src={URL.createObjectURL(new Blob([cell]))} alt="Offer Letter" fluid rounded /></a> },
+        {
+            dataField: 'actions',
+            text: 'Actions',
+            formatter: (cell, row) => (
+                <>
+                    <Button variant="success" onClick={() => handleApprove(row.studentId)}>
+                        Approve
+                    </Button>{' '}
+                    <Button variant="danger" onClick={() => handleReject(row.studentId)}>
+                        Reject
+                    </Button>
+                </>
+            ),
+        },
+    ];
+
+    const paginationOptions = {
+        sizePerPage: 10,
+        hideSizePerPage: true,
+        hidePageListOnlyOnePage: true,
+    };
+
+    return (
+        <>
+            {error && <Alert variant="danger">{error.message}</Alert>}
+            {loading ? (
+                <Spinner animation="border" variant="primary" />
+            ) : (
+                <div style={{ maxWidth: '80%', margin: 'auto', marginTop: '50px' }}>
+                    <BootstrapTable keyField="studentId" data={data} columns={columns} pagination={paginationFactory(paginationOptions)} />
+                </div>
+            )}
+        </>
+    );
 }
 
 export default DataTable;

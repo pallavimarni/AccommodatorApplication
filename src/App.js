@@ -51,39 +51,39 @@ function App() {
                         </div>
                     </div>
                 </nav>
-                            <Routes>
-                                <Route exact path="/" element={<HomePage />} />
-                                <Route path="/sign-in" element={<Login />} />
-                                <Route path="/sign-up" element={<SignUp />} />
-                                <Route path="/StudentPreferences" element={<StudentPreferences />} />
-                                <Route path="/OwnerPreferences" element={<OwnerPreferences />} />
-                                <Route path="/SetYourPreferences" element={<SetYourPreferences />} />
-                                <Route path="/Features" element={<Features />} />
-                                <Route path="/AddPosting" element={<AddPosting />} />
-                                <Route path="/ShowPosting" element={<ShowPosting />} />
-                                <Route path="/adminHome" element={<Admin />} />
-                                <Route path="/DisplayStudentsAfterPref" element={<DisplayStudentsAfterPref />} />
-                                <Route path="/DisplayPostingsAfterPref" element={<DisplayPostingsAfterPref />} />
-                            </Routes>
-<div>
-    <br/>
-                <footer className="bg-light py-4">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-6">
-                                <p>&copy; 2023 Accommodator. All rights reserved.</p>
-                            </div>
-                            <div className="col-md-6">
-                                <ul className="list-inline text-md-right">
-                                    <li className="list-inline-item"><a href="#">Home</a></li>
-                                    <li className="list-inline-item"><a href="#">About</a></li>
-                                    <li className="list-inline-item"><a href="#">Contact</a></li>
-                                </ul>
+                <Routes>
+                    <Route exact path="/" element={<HomePage />} />
+                    <Route path="/sign-in" element={<Login />} />
+                    <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/StudentPreferences" element={<StudentPreferences />} />
+                    <Route path="/OwnerPreferences" element={<OwnerPreferences />} />
+                    <Route path="/SetYourPreferences" element={<SetYourPreferences />} />
+                    <Route path="/Features" element={<Features />} />
+                    <Route path="/AddPosting" element={<AddPosting />} />
+                    <Route path="/ShowPosting" element={<ShowPosting />} />
+                    <Route path="/adminHome" element={<Admin />} />
+                    <Route path="/DisplayStudentsAfterPref" element={<DisplayStudentsAfterPref />} />
+                    <Route path="/DisplayPostingsAfterPref" element={<DisplayPostingsAfterPref />} />
+                </Routes>
+                <div>
+                    <br/>
+                    <footer className="bg-light py-4">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <p>&copy; 2023 Accommodator. All rights reserved.</p>
+                                </div>
+                                <div className="col-md-6">
+                                    <ul className="list-inline text-md-right">
+                                        <li className="list-inline-item"><a href="#">Home</a></li>
+                                        <li className="list-inline-item"><a href="#">About</a></li>
+                                        <li className="list-inline-item"><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </footer>
-            </div>
+                    </footer>
+                </div>
 
             </div>
         </Router>

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Select from 'react-select';
 import axios from 'axios';
 import './Preferences.css';
-import {Button, Card, Col, Container, Row} from "react-bootstrap";
 
 const options = [{value: 'Dalhousie University', label: 'Dalhousie University'}, {
     value: 'Saint Marys University', label: 'Saint Marys University'
@@ -52,7 +51,7 @@ const interestOptions = [{value: 'Gym', label: 'Gym'}, {value: 'Music', label: '
     value: 'Sports', label: 'Sports'
 }, {value: 'Travel', label: 'Travel'}, {value: 'Photography', label: 'Photography'}, {
     value: 'Reading', label: 'Reading'
-}, ,];
+}, ];
 
 
 const nationalityOptions = [{value: 'South Asian', label: 'South Asian'},

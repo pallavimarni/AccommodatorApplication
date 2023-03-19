@@ -118,6 +118,7 @@ axios.post('http://localhost:8080/student/create', formData, {
                 <Form.Group>
                     <h3>Sign Up</h3>
 
+                    <Form.Label>Are you a student or owner?</Form.Label>
                     <Form.Check
                         type="radio"
                         label="Student"
