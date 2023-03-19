@@ -118,7 +118,6 @@ axios.post('http://localhost:8080/student/create', formData, {
                 <Form.Group>
                     <h3>Sign Up</h3>
 
-                    <Form.Label>Are you a student or owner?</Form.Label>
                     <Form.Check
                         type="radio"
                         label="Student"
@@ -163,9 +162,9 @@ axios.post('http://localhost:8080/student/create', formData, {
                             Please provide a valid contact.
                         </Form.Control.Feedback>
 
-                        <Form.Label>Upload Offer Letter</Form.Label>
+                        <Form.Label>Upload Offer Letter (PDF only)</Form.Label>
                         <Form.Control id="offerLetter" value={data.offerLetter} type="file"
-                                      placeholder="Upload Offer Letter" onChange={handleOnChange} required/>
+                                      placeholder="Upload Offer Letter" accept="application/pdf" onChange={handleOnChange} required/>
 
 
                         <Form.Label>Create password</Form.Label>
