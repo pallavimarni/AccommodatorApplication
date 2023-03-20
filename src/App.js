@@ -8,6 +8,7 @@ import HomePage from './Components/HomePage'
 import StudentPreferences from "./Components/StudentPreferences";
 import OwnerPreferences from "./Components/OwnerPreferences";
 import SetYourPreferences from "./Components/SetYourPreferences";
+import SetPreferencesOwner from "./Components/SetPreferencesOwner";
 import Features from "./Components/Features";
 import AddPosting from './Components/AddPosting';
 import ShowPosting from "./Components/ShowPosting";
@@ -58,6 +59,7 @@ function App() {
                     <Route path="/StudentPreferences" element={<StudentPreferences />} />
                     <Route path="/OwnerPreferences" element={<OwnerPreferences />} />
                     <Route path="/SetYourPreferences" element={<SetYourPreferences />} />
+                    <Route path="/SetPreferencesOwner" element={<SetPreferencesOwner />} />
                     <Route path="/Features" element={<Features />} />
                     <Route path="/AddPosting" element={<AddPosting />} />
                     <Route path="/ShowPosting" element={<ShowPosting />} />
