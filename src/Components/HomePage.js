@@ -56,14 +56,14 @@ function HomePage() {
             <div className="container">
                 <div className="row">
 
-
             <div className="row">
                 <div className="col-md-4" >
-                    <Card style={{ width: '18rem'}}>
-                        <Card.Img variant="top" src="https://www.narcity.com/media-library/a-residential-building-with-balconies-in-montreal.jpg?id=30985641&width=1245&height=700&quality=85&coordinates=0%2C41%2C0%2C41" />
-                        <Card.Body>
+                    <Card style={{ width: '18rem', height: '450px'}}>
+                        <Card.Img variant="top" src="https://www.narcity.com/media-library/a-residential-building-with-balconies-in-montreal.jpg?id=30985641&width=1245&height=700&quality=85&coordinates=0%2C41%2C0%2C41 "
+                                  style={{ height: '200px' }}/>
+                        <Card.Body style={{ height: '220px' }}>
                             <Card.Title>Rental Scams</Card.Title>
-                            <Card.Text>
+                            <Card.Text style={{height: '100px'}}>
                                 Canada's housing market has been rife with problems lately and things don't look good for those looking to rent in the country either.
                             </Card.Text>
                             <Button variant="primary" href={"https://www.narcity.com/rental-scams-on-the-rise-in-canada-signs-you-re-being-conned"}>Read</Button>
@@ -71,11 +71,12 @@ function HomePage() {
                     </Card>
                 </div>
                 <div className="col-md-4">
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src="https://globalnews.ca/wp-content/uploads/2023/03/Immigrant-rental-scam2.jpg?w=2048" />
-                        <Card.Body>
-                            <Card.Title>Newcomers Rental Scams</Card.Title>
-                            <Card.Text>
+                    <Card style={{ width: '18rem', height: '450px'}}>
+                        <Card.Img variant="top" src="https://globalnews.ca/wp-content/uploads/2023/03/Immigrant-rental-scam2.jpg?w=2048"
+                                  style={{ height: '200px' }}/>
+                        <Card.Body style={{ height: '220px' }}>
+                            <Card.Title> Newcomer Scams</Card.Title>
+                            <Card.Text style={{height: '100px'}}>
                                 Newcomers to Canada ‘most vulnerable’ to rental scams
                             </Card.Text>
                             <Button variant="primary" href={"https://globalnews.ca/news/9532094/newcomer-rental-scam-calgary/"}>Read</Button>
@@ -83,13 +84,13 @@ function HomePage() {
                     </Card>
                 </div>
                 <div className="col-md-4">
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src="https://www.avail.co/wp-content/uploads/2017/04/4-rental-scams-1024x836.jpg" />
-                        <Card.Body>
+                    <Card style={{ width: '18rem', height: '450px'}}>
+                        <Card.Img variant="top" src="https://www.avail.co/wp-content/uploads/2017/04/4-rental-scams-1024x836.jpg" style={{ height: '200px' }}/>
+                        <Card.Body style={{ height: '220px' }}>
                             <Card.Title>Spot a Rental Scam</Card.Title>
-                            <Card.Text>
+                            <Card.Text style={{height: '100px'}}>
                                 Which warning signs to watch out for, ways to prevent being scammed, and what to do if you’re a victim of a fraudulent listing.
-                            </Card.Text>
+                                </Card.Text>
                             <Button variant="primary" href={"https://www.avail.co/education/guides/a-tenants-guide-to-finding-an-apartment/how-to-spot-a-rental-scam"}>Read</Button>
                         </Card.Body>
                     </Card>

@@ -99,24 +99,28 @@ function SetYourPreferences() {
         setMultiSelectedOptions(options);
     };
     const handleSubmit = (event) => {
+        const user = JSON.parse(localStorage.getItem('user'));
         event.preventDefault();
-        const formData = new FormData();
-        formData.append('university', selectedOption1.value);
-        formData.append('foodPreference', selectedOption2.value);
-        formData.append('isSmoking',selectedOption3.value);
-        formData.append('isDrinking', selectedOption4.value);
-        formData.append('livingSpace', selectedOption5.value);
-        formData.append('studyEnvironment', selectedOption6.value);
-        formData.append('nationality', selectedOption7.value);
-        axios.post('http://localhost:8080/studentpref/create',formData)
+        const data = {
+            university: selectedOption1.value,
+            food: selectedOption2.value,
+            smokingPref: selectedOption3.value,
+            drinkingPref: selectedOption4.value,
+            livingPref: selectedOption5.value,
+            studyPref: selectedOption6.value,
+            nationality: selectedOption7.value,
+            studentId: user.studentId
+          };
+          
+          axios.post('http://localhost:8080/studentpref/create', data)
             .then(response => {
-                console.log(response.data);
+              console.log(response.data);
+              window.location.href = '/Features';
             })
             .catch(error => {
-                console.error(error);
-            });
-    };
-
+              console.error(error);
+            });          
+        }
     const [posts, setPosts] = React.useState([]);
 
     function handleConnectClick(email) {
