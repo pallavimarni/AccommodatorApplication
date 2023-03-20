@@ -68,7 +68,7 @@ class AddPost extends React.Component {
 
                     axios.post('http://localhost:8080/posting/create', postingData).then((response) => {
                             if (response.status === 200) {
-                                window.location.href = '/home';
+                                window.location.href = '/Features';
                             } else {
                                 console.error('Post creation failed:', response.data.message);
                             }

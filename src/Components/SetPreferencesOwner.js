@@ -109,7 +109,7 @@ function SetPreferencesOwner() {
         formData.append('livingSpace', selectedOption5.value);
         formData.append('studyEnvironment', selectedOption6.value);
         formData.append('nationality', selectedOption7.value);
-        axios.post('http://localhost:8080/ownerpref/match',formData)
+        axios.post('http://localhost:8080/ownerpref/create',formData)
             .then(response => {
                 console.log(response.data);
             })
@@ -119,26 +119,6 @@ function SetPreferencesOwner() {
     };
 
     const [posts, setPosts] = React.useState([]);
-
-    React.useEffect(() => {
-        axios.get('http://localhost:8080/posting/get/all', {
-            image: posts.image,
-            title: posts.title,
-            description: posts.description,
-            rent: posts.rent,
-            address: posts.address,
-            pincode: posts.pincode,
-            category: posts.category,
-            email: posts.email
-        })
-            .then(response => {
-                setPosts(response.data);
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }, []);
 
     function handleConnectClick(email) {
         console.log('Contact with owner on ', email);

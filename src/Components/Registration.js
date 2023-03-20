@@ -102,7 +102,7 @@ axios.post('http://localhost:8080/student/create', formData, {
                                     console.log(response.data);
                                     form.reset();
                                     alert('Owner Successfully registered!');
-                                    window.location.href = '/home';
+                                    window.location.href = '/SetPreferencesOwner';
                                 })
                                 .catch((error) => {
                                     console.error('Error:', error);
