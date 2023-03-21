@@ -15,6 +15,7 @@ import ShowPosting from "./Components/ShowPosting";
 import Admin from "./Components/Admin";
 import DisplayStudentsAfterPref from "./Components/DisplayStudentsAfterPref";
 import DisplayPostingsAfterPref from "./Components/DisplayPostingsAfterPref";
+import AdminLogin from "./Components/AdminLogin";
 
 //import Home from './Components/Posting'
 
@@ -66,6 +67,7 @@ function App() {
                     <Route path="/adminHome" element={<Admin />} />
                     <Route path="/DisplayStudentsAfterPref" element={<DisplayStudentsAfterPref />} />
                     <Route path="/DisplayPostingsAfterPref" element={<DisplayPostingsAfterPref />} />
+                    <Route path="/AdminLogin" element={<AdminLogin />} />
                 </Routes>
                 <div>
                     <br/>
