@@ -1,35 +1,15 @@
-import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import axios from 'axios';
+import {Card, Col, Container, Row} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import React from "react";
 
 function DisplayStudentsAfterPref() {
 
-    const posts = [
-        { name: 'Pallavi ', contact: '1234567890' },
+    const [posts, setPosts] = React.useState([]);
 
-        { name: 'Mayank ', contact: '1234567890' },
-        { name: 'Smit ', contact: '1234567890' },
-        { name: 'Fenil ', contact: '1234567890' },
-        { name: 'Shashwat ', contact: '1234567890' },
-        { name: 'Tushar ', contact: '1234567890' }
-    ];
-
-    // const [posts, setPosts] = React.useState([]);
-    //
-    // React.useEffect(() => {
-    //     axios.get('http://localhost:8080/posting/get/all', {
-    //         name: posts.name,
-    //         contact: posts.contact,
-    //         email: posts.email
-    //     })
-    //         .then(response => {
-    //             setPosts(response.data);
-    //             console.log(response.data);
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         });
-    // }, []);
+    React. useEffect(() => {
+        const data = JSON.parse(localStorage.getItem('Owner_info'));
+        setPosts(data);
+    }, []);
 
     function handleConnectClick(email) {
         console.log('Contact with owner on ', email);
@@ -53,8 +33,8 @@ function DisplayStudentsAfterPref() {
                                                         </button>
 
                                                         <Card.Body>
-                                                            <Card.Title>{post.name}</Card.Title>
-                                                            <Card.Text>{post.contact}</Card.Text>
+                                                            <Card.Title>{post.firstName +" "+ post.lastName}</Card.Title>
+                                                          <Card.Text>{post.email}</Card.Text>
                                                             <Button variant="primary" onClick={() => handleConnectClick(post.email)}>Connect with student</Button>
                                                         </Card.Body>
                                                     </Card>

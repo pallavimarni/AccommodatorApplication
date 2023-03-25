@@ -3,6 +3,7 @@ import Select from 'react-select';
 import axios from 'axios';
 import './Preferences.css';
 import {Button, Card, Col, Container, Row} from "react-bootstrap";
+import data from "bootstrap/js/src/dom/data";
 
 const options = [{value: 'Dalhousie University', label: 'Dalhousie University'}, {
     value: 'Saint Marys University', label: 'Saint Marys University'
@@ -109,9 +110,11 @@ function StudentPreferences() {
          formData.append('livingSpace', selectedOption5.value);
          formData.append('studyEnvironment', selectedOption6.value);
          formData.append('nationality', selectedOption7.value);
-        axios.post('http://localhost:8080/ownerpref/match',formData)
+        axios.post('http://localhost:8080/studentpref/match',formData)
           .then(response => {
             console.log(response.data);
+            localStorage.setItem("Student_info",JSON.stringify(response.data));
+             window.location.href = '/DisplayPostingsAfterPref';
           })
           .catch(error => {
             console.error(error);

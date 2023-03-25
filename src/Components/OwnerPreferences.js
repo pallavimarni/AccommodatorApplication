@@ -112,6 +112,8 @@ function OwnerPreferences() {
         axios.post('http://localhost:8080/ownerpref/match',formData)
           .then(response => {
             console.log(response.data);
+              localStorage.setItem("Owner_info",JSON.stringify(response.data));
+              window.location.href = '/DisplayStudentsAfterPref';
           })
           .catch(error => {
             console.error(error);

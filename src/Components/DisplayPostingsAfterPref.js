@@ -6,24 +6,9 @@ function DisplayPostingsAfterPref() {
 
     const [posts, setPosts] = React.useState([]);
 
-    React.useEffect(() => {
-        axios.get('http://localhost:8080/posting/get/all', {
-            image: posts.image,
-            title: posts.title,
-            description: posts.description,
-            rent: posts.rent,
-            address: posts.address,
-            pincode: posts.pincode,
-            category: posts.category,
-            email: posts.email
-        })
-            .then(response => {
-                setPosts(response.data);
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+    React. useEffect(() => {
+        const data = JSON.parse(localStorage.getItem('Student_info'));
+        setPosts(data);
     }, []);
 
     function handleConnectClick(email) {
@@ -31,9 +16,7 @@ function DisplayPostingsAfterPref() {
     }
     return (
         <div className="auth-wrapper">
-
-                                <h2 className="text-center text-uppercase text-BLACK mb-4">Latest Postings</h2>
-
+            <div className="form-container">
                                 <Container>
                                     {posts.map((post, index) => {
                                         if (index % 3 === 0) {
@@ -70,8 +53,8 @@ function DisplayPostingsAfterPref() {
                             </div>
 
 
+        </div>
     );
 }
-
 
 export default DisplayPostingsAfterPref;
