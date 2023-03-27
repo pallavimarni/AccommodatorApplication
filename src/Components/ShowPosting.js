@@ -29,6 +29,12 @@ function ShowPosting() {
     function handleConnectClick(email) {
         console.log('Contact with owner on ', email);
     }
+
+    function addFavorites(postId) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        axios.post(`http://localhost:8080/favorite/create`,{studentId: user.studentId,postId: postId})
+    }
+
     return (
         <div className="auth-wrapper">
             <div className="form-container">
@@ -77,7 +83,7 @@ function ShowPosting() {
                                         cards.push(
                                             <Col key={i}>
                                                 <Card>
-                                                    <button className="favorite-button">
+                                                    <button className="favorite-button" onClick={() => addFavorites(post.postId)}>
                                                         <i className="fa fa-heart"></i> Add to favorites
                                                     </button>
                                                     <Card.Img variant="top" src={post.image} />

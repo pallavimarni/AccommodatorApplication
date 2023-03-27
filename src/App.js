@@ -16,7 +16,7 @@ import Admin from "./Components/Admin";
 import DisplayStudentsAfterPref from "./Components/DisplayStudentsAfterPref";
 import DisplayPostingsAfterPref from "./Components/DisplayPostingsAfterPref";
 import AdminLogin from "./Components/AdminLogin";
-
+import ShowFavorites from "./Components/ShowFavorites";
 //import Home from './Components/Posting'
 
 function App() {
@@ -68,6 +68,7 @@ function App() {
                     <Route path="/DisplayStudentsAfterPref" element={<DisplayStudentsAfterPref />} />
                     <Route path="/DisplayPostingsAfterPref" element={<DisplayPostingsAfterPref />} />
                     <Route path="/AdminLogin" element={<AdminLogin />} />
+                    <Route path="/ShowFavorites" element={<ShowFavorites />} />
                 </Routes>
                 <div>
                     <br/>
