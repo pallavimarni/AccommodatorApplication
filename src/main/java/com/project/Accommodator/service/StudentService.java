@@ -9,5 +9,5 @@ public interface StudentService {
     Student getStudentById(int id);
     Student loginStudent(String email,String password);
     Iterable<Student> getAllStudents();
-    void createStudent(String firstName, String lastName, String email, String password, Long contactNo, MultipartFile pdfFile) throws IOException;
+    Student createStudent(String firstName, String lastName, String email, String password, Long contactNo, MultipartFile pdfFile) throws IOException;
 }

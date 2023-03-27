@@ -20,8 +20,8 @@ public class StudentController {
     }
     @CrossOrigin
     @PostMapping(value = "/create", consumes = {"multipart/form-data"})
-    public void createStudent(@RequestParam String firstName,@RequestParam String lastName,@RequestParam String email,@RequestParam String password,@RequestParam Long contactNo, @RequestParam("offerLetter") MultipartFile pdfFile) throws IOException {
-         studentService.createStudent(firstName,lastName,email,password,contactNo,pdfFile);
+    public Student createStudent(@RequestParam String firstName,@RequestParam String lastName,@RequestParam String email,@RequestParam String password,@RequestParam Long contactNo, @RequestParam("offerLetter") MultipartFile pdfFile) throws IOException {
+         return studentService.createStudent(firstName,lastName,email,password,contactNo,pdfFile);
     }
 
 

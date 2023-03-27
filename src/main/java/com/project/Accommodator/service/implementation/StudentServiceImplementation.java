@@ -30,7 +30,7 @@ public class StudentServiceImplementation implements StudentService {
     }
 
     @Override
-    public void createStudent(String firstName, String lastName, String email, String password, Long contactNo, MultipartFile pdfFile) throws IOException {
+    public Student createStudent(String firstName, String lastName, String email, String password, Long contactNo, MultipartFile pdfFile) throws IOException {
         Student student = new Student();
         student.setFirstName(firstName);
         student.setLastName(lastName);
@@ -39,6 +39,7 @@ public class StudentServiceImplementation implements StudentService {
         student.setContactNo(contactNo);
         student.setOfferLetter(pdfFile.getBytes());
         StudentRepository.save(student);
+        return student;
     }
 
     @Override
