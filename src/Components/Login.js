@@ -37,11 +37,11 @@ const Login = () => {
                     localStorage.setItem('user',JSON.stringify(response.data));
                     // authentication succeeded, grant access
                     if (userType === 'option1') {
-                        window.location.href = '/Features';
+                        window.location.href = '/StudentFeatures';
                     }
 
                     else{
-                        window.location.href = '/HomePage';
+                        window.location.href = '/OwnerFeatures';
                     }
 
                 } else {

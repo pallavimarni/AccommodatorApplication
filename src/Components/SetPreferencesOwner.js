@@ -100,7 +100,7 @@ function SetPreferencesOwner() {
         setMultiSelectedOptions(options);
     };
     const handleSubmit = (event) => {
-        const user = JSON.parse(localStorage.getItem('user'));
+        const user = JSON.parse(localStorage.getItem('regUser'));
         event.preventDefault();
         const data = {
             university: selectedOption1.value,
@@ -110,12 +110,12 @@ function SetPreferencesOwner() {
             livingPref: selectedOption5.value,
             studyPref: selectedOption6.value,
             nationality: selectedOption7.value,
-            ownerId: user.studentId
+            ownerId: user.ownerId
           };
           axios.post('http://localhost:8080/ownerpref/create', data)
             .then(response => {
               console.log(response.data);
-              window.location.href = '/Features';
+              window.location.href = '/OwnerFeatures';
             })
             .catch(error => {
               console.error(error);

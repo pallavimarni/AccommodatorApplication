@@ -99,7 +99,7 @@ function SetYourPreferences() {
         setMultiSelectedOptions(options);
     };
     const handleSubmit = (event) => {
-        const user = JSON.parse(localStorage.getItem('user'));
+        const user = JSON.parse(localStorage.getItem('regUser'));
         event.preventDefault();
         const data = {
             university: selectedOption1.value,
@@ -115,7 +115,7 @@ function SetYourPreferences() {
           axios.post('http://localhost:8080/studentpref/create', data)
             .then(response => {
               console.log(response.data);
-              window.location.href = '/Features';
+              window.location.href = '/StudentFeatures';
             })
             .catch(error => {
               console.error(error);
@@ -128,7 +128,7 @@ function SetYourPreferences() {
     }
 
     return (<div className="auth-wrapper">
-            <div className="form-container">
+            <div className="form-container">    
                 <div className="auth-inner">
 
                     <h2>Set Your Preferences</h2>

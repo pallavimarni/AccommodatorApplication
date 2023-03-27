@@ -9,7 +9,7 @@ import StudentPreferences from "./Components/StudentPreferences";
 import OwnerPreferences from "./Components/OwnerPreferences";
 import SetYourPreferences from "./Components/SetYourPreferences";
 import SetPreferencesOwner from "./Components/SetPreferencesOwner";
-import Features from "./Components/Features";
+import StudentFeatures from "./Components/StudentFeatures";
 import AddPosting from './Components/AddPosting';
 import ShowPosting from "./Components/ShowPosting";
 import Admin from "./Components/Admin";
@@ -17,6 +17,7 @@ import DisplayStudentsAfterPref from "./Components/DisplayStudentsAfterPref";
 import DisplayPostingsAfterPref from "./Components/DisplayPostingsAfterPref";
 import AdminLogin from "./Components/AdminLogin";
 import ShowFavorites from "./Components/ShowFavorites";
+import OwnerFeatures from "./Components/OwnerFeatures";
 //import Home from './Components/Posting'
 
 function App() {
@@ -45,8 +46,14 @@ function App() {
                                 </li>
 
                                 <li className="nav-item">
-                                    <Link className="nav-link" to={'/Features'}>
-                                        Features
+                                    <Link className="nav-link" to={'/StudentFeatures'}>
+                                        Student Features
+                                    </Link>
+                                </li>
+
+                                <li className="nav-item">
+                                    <Link className="nav-link" to={'/OwnerFeatures'}>
+                                        Owner Features
                                     </Link>
                                 </li>
                             </ul>
@@ -61,7 +68,8 @@ function App() {
                     <Route path="/OwnerPreferences" element={<OwnerPreferences />} />
                     <Route path="/SetYourPreferences" element={<SetYourPreferences />} />
                     <Route path="/SetPreferencesOwner" element={<SetPreferencesOwner />} />
-                    <Route path="/Features" element={<Features />} />
+                    <Route path="/StudentFeatures" element={<StudentFeatures />} />
+                    <Route path="/OwnerFeatures" element={<OwnerFeatures />} />
                     <Route path="/AddPosting" element={<AddPosting />} />
                     <Route path="/ShowPosting" element={<ShowPosting />} />
                     <Route path="/adminHome" element={<Admin />} />

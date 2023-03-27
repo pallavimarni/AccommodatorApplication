@@ -80,6 +80,7 @@ axios.post('http://localhost:8080/student/create', formData, {
 .then((response) => {
     console.log(response.data);
     form.reset();
+    localStorage.setItem('regUser',JSON.stringify(response.data));
     alert('Student Successfully registered!');
     window.location.href = '/SetYourPreferences';
 
@@ -101,6 +102,7 @@ axios.post('http://localhost:8080/student/create', formData, {
                                 .then((response) => {
                                     console.log(response.data);
                                     form.reset();
+                                    localStorage.setItem('regUser',JSON.stringify(response.data));
                                     alert('Owner Successfully registered!');
                                     window.location.href = '/SetPreferencesOwner';
                                 })

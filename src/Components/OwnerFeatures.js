@@ -19,7 +19,7 @@ function Features() {
             description: 'Click to find a roommate that shares your interests.',
             image:'https://www.udr.com/globalassets/corporate/other/roommatefinder/roommatefinder_logo_final.png',
             buttonLabel: 'Click here',
-            buttonLink: '/StudentPreferences',
+            buttonLink: '/OwnerPreferences',
 
         },
         {
@@ -29,24 +29,6 @@ function Features() {
             image:'https://cdn.w600.comps.canstockphoto.com/new-listing-stamp-eps-vector_csp32695784.jpg',
             buttonLabel: 'Click here',
             buttonLink: '/ShowPosting',
-
-        },
-        {
-            id: 4,
-            title: 'Map',
-            description: 'Click to see available listings on a map',
-            image:'https://media.istockphoto.com/id/176022505/photo/halifax-nova-scotia-canada-on-a-map.jpg?s=1024x1024&w=is&k=20&c=03_5xhwEj6UvrQeHtOqrjyhlP_zHGudJDMyLtDIOfcA=',
-            buttonLabel: 'Click here',
-            buttonLink: '',
-
-        },
-        {
-            id: 5,
-            title: 'See favorites',
-            description: 'Click to see postings added to your favorites',
-            image:'https://cdn.thememylogin.com/uploads/edd/2019/03/favorites.png',
-            buttonLabel: 'Click here',
-            buttonLink: '/ShowFavorites',
 
         },
     ];

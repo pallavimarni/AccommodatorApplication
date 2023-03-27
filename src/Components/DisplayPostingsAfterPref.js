@@ -26,9 +26,6 @@ function DisplayPostingsAfterPref() {
                                                 cards.push(
                                                     <Col key={i}>
                                                         <Card>
-                                                            <button className="favorite-button">
-                                                                <i className="fa fa-heart"></i> Add to favorites
-                                                            </button>
                                                             <Card.Img variant="top" src={post.image} />
                                                             <Card.Body>
                                                                 <Card.Title>{post.title}</Card.Title>

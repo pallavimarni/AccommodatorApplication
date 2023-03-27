@@ -28,10 +28,6 @@ function DisplayStudentsAfterPref() {
                                             cards.push(
                                                 <Col key={i}>
                                                     <Card>
-                                                        <button className="favorite-button">
-                                                            <i className="fa fa-heart"></i> Add to favorites
-                                                        </button>
-
                                                         <Card.Body>
                                                             <Card.Title>{post.firstName +" "+ post.lastName}</Card.Title>
                                                           <Card.Text>{post.email}</Card.Text>
