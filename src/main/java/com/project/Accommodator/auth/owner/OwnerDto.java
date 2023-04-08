@@ -1,3 +1,8 @@
+/**
+
+ A Data Transfer Object class representing an Owner entity for authentication purposes.
+ It contains fields for ownerId, email, firstName, lastName, contactNo, and ownerType.
+ */
 package com.project.Accommodator.auth.owner;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,3 +19,8 @@ public class OwnerDto {
     private String contactNo;
     private String ownerType;
 }
+
+
+
+
+

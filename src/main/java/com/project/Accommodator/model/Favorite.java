@@ -2,6 +2,18 @@ package com.project.Accommodator.model;
 
 import jakarta.persistence.*;
 
+/**
+
+ Favorite entity representing a favorite relationship between a student and a posting.
+
+ The entity is annotated with @Entity to specify that it is a JPA entity and @Table to specify
+
+ the name of the database table that corresponds to this entity. The entity also specifies the
+
+ @Id annotation on the favoriteId field to indicate that this is the primary key of the entity
+
+ and @GeneratedValue to indicate that the primary key value will be generated automatically.
+ */
 @Entity
 @Table(name="Favorite")
 public class Favorite {

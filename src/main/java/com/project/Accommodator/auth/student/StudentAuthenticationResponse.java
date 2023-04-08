@@ -1,22 +1,8 @@
-//package com.project.Accommodator.auth.student;
-//
-//import lombok.AllArgsConstructor;
-//import lombok.Builder;
-//import lombok.Data;
-//import lombok.NoArgsConstructor;
-//
-//@Data
-//@Builder
-//@AllArgsConstructor
-//@NoArgsConstructor
-//public class StudentAuthenticationResponse {
-//
-//  private String token;
-//}
-//
-//
-package com.project.Accommodator.auth.student;
+/**
 
+ Represents the response data sent back to the client upon successful authentication of a student user.
+ */
+package com.project.Accommodator.auth.student;
 import com.project.Accommodator.model.Student;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +15,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StudentAuthenticationResponse {
 
-  private String token;
-  private StudentDto student;
+  /**
 
+   The JWT token generated for the authenticated student user.
+   */
+  private String token;
+  /**
+
+   Information about the authenticated student user in the form of a StudentDto object.
+   */
+  private StudentDto student;
 }

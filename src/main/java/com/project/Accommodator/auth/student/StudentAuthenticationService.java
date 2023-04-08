@@ -1,3 +1,4 @@
+
 package com.project.Accommodator.auth.student;
 
 import com.project.Accommodator.config.student.StudentJwtService;
@@ -16,8 +17,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.naming.AuthenticationException;
 import java.io.IOException;
+/**
 
+ This class implements the authentication service for student users.
+ It provides functionality for user registration and authentication.
+ */
 @Service
 @RequiredArgsConstructor
 public class StudentAuthenticationService {
@@ -45,7 +51,13 @@ public class StudentAuthenticationService {
 //        .token(jwtToken)
 //        .build();
 //  }
+  /**
 
+   Registers a new student with the given information.
+   @param request a multipart HTTP servlet request containing the student's first name, last name, email, password, contact number, and offer letter file
+   @return a StudentAuthenticationResponse object containing a JWT token and a StudentDto object representing the registered student
+   @throws IOException if there was an error reading the offer letter file
+   */
   public StudentAuthenticationResponse register(MultipartHttpServletRequest request) throws IOException {
     var firstName = request.getParameter("firstName");
     var lastName = request.getParameter("lastName");
@@ -73,16 +85,21 @@ public class StudentAuthenticationService {
             .student(studentDto)
             .build();
   }
+  /**
 
+   Authenticates a student with the given email and password.
+   @param request a StudentAuthenticationRequest object containing the email and password of the student to authenticate
+   @return a StudentAuthenticationResponse object containing a new JWT token and a StudentDto object representing the authenticated student
+   */
   public StudentAuthenticationResponse authenticate(StudentAuthenticationRequest request) {
     authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(
-            request.getEmail(),
-            request.getPassword()
-        )
+            new UsernamePasswordAuthenticationToken(
+                    request.getEmail(),
+                    request.getPassword()
+            )
     );
     var user = repository.findByEmail(request.getEmail())
-        .orElseThrow();
+            .orElseThrow();
     var jwtToken = jwtService.generateToken(user);
     revokeAllUserTokens(user);
     saveUserToken(user, jwtToken);
@@ -92,17 +109,28 @@ public class StudentAuthenticationService {
             .student(studentDto)
             .build();
   }
+  /**
+
+   Saves a new student token for the given user and JWT token.
+   @param user the student for whom the token is being saved
+   @param jwtToken the JWT token being saved
+   */
 
   private void saveUserToken(Student user, String jwtToken) {
     var token = StudentToken.builder()
-        .user(user)
-        .token(jwtToken)
-        .tokenType(TokenType.BEARER)
-        .expired(false)
-        .revoked(false)
-        .build();
+            .user(user)
+            .token(jwtToken)
+            .tokenType(TokenType.BEARER)
+            .expired(false)
+            .revoked(false)
+            .build();
     tokenRepository.save(token);
   }
+  /**
+
+   Revokes all valid tokens for the given student.
+   @param user the student for whom tokens are being revoked
+   */
 
   private void revokeAllUserTokens(Student user) {
     var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getStudentId());

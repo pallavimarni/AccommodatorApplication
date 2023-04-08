@@ -4,10 +4,29 @@ import com.project.Accommodator.model.OwnerPreferences;
 import com.project.Accommodator.model.Student;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+
+ Interface for OwnerPreferencesRepository, extends the CrudRepository interface.
+ */
+@Repository
 public interface OwnerPreferencesRepository extends CrudRepository<OwnerPreferences, Integer> {
+
+    /**
+
+     Returns a list of students who match the given owner preferences.
+     @param university the preferred university of the student
+     @param foodPreference the preferred food of the student
+     @param isSmoking the smoking preference of the student
+     @param isDrinking the drinking preference of the student
+     @param livingSpace the preferred living space of the student
+     @param studyEnvironment the preferred study environment of the student
+     @param nationality the preferred nationality of the student
+     @return a list of students who match the given owner preferences
+     */
     @Query("SELECT s FROM StudentPreferences o INNER JOIN Student s ON s.studentId = o.studentId\n" +
             "WHERE CASE WHEN o.university = ?1 THEN 1 ELSE 0 END +\n" +
             "      CASE WHEN o.food = ?2 THEN 1 ELSE 0 END +\n" +

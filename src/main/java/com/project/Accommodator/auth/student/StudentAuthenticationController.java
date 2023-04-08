@@ -1,3 +1,11 @@
+/**
+
+ This class is responsible for handling student authentication related HTTP requests.
+ The {@code StudentAuthenticationController} class contains methods to handle HTTP requests for student
+ registration, student login. It also has access to the necessary dependencies including the {@code PasswordEncoder},
+ {@code StudentJwtService}, {@code StudentAuthenticationService}, and {@code StudentRepository}.
+
+ */
 package com.project.Accommodator.auth.student;
 
 import com.project.Accommodator.config.student.StudentJwtService;
@@ -17,12 +25,25 @@ import java.io.IOException;
 @CrossOrigin
 public class StudentAuthenticationController {
 
-
+  /**
+   * The password encoder dependency to encode passwords.
+   */
   private final PasswordEncoder passwordEncoder;
-  private final StudentJwtService jwtService;
-  private final StudentAuthenticationService service;
-  private final StudentRepository repository;
 
+  /**
+   * The JSON Web Token (JWT) service for student authentication.
+   */
+  private final StudentJwtService jwtService;
+
+  /**
+   * The service for handling student authentication.
+   */
+  private final StudentAuthenticationService service;
+
+  /**
+   * The repository for the student entity.
+   */
+  private final StudentRepository repository;
 //  @PostMapping("/create")
 //  public ResponseEntity<StudentAuthenticationResponse> register(
 //      @RequestBody Student request
@@ -30,13 +51,20 @@ public class StudentAuthenticationController {
 //    System.out.println("hello");
 //    return ResponseEntity.ok(service.register(request));
 //  }
-
+  /**
+   * Handles HTTP POST requests to register a new student.
+   *
+   * @param request a multipart HTTP request containing student information including first name, last name, email,
+   *                password, contact number, and offer letter
+   * @return a HTTP response containing a {@code StudentAuthenticationResponse} object
+   * @throws IOException if an input/output error occurs
+   */
   @PostMapping("/create")
   public ResponseEntity<StudentAuthenticationResponse> register(MultipartHttpServletRequest request) throws IOException{
-
     return ResponseEntity.ok(service.register(request));
   }
-//@PostMapping("/create")
+
+  //@PostMapping("/create")
 //public ResponseEntity<StudentAuthenticationResponse> register(MultipartHttpServletRequest request) throws IOException {
 //  var firstName = request.getParameter("firstName");
 //  var lastName = request.getParameter("lastName");
@@ -61,13 +89,16 @@ public class StudentAuthenticationController {
 //          .build());
 //}
 
-
+  /**
+   * Handles HTTP POST requests to authenticate a student.
+   *
+   * @param request a HTTP request containing student authentication information including email and password
+   * @return a HTTP response containing a {@code StudentAuthenticationResponse} object
+   */
   @PostMapping("/login")
   public ResponseEntity<StudentAuthenticationResponse> authenticate(
-      @RequestBody StudentAuthenticationRequest request
+          @RequestBody StudentAuthenticationRequest request
   ) {
     return ResponseEntity.ok(service.authenticate(request));
   }
-
-
 }

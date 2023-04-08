@@ -1,5 +1,8 @@
-package com.project.Accommodator.auth.owner;
+/**
 
+ A class representing the response returned by the OwnerAuthenticationController upon successful authentication.
+ */
+package com.project.Accommodator.auth.owner;
 import com.project.Accommodator.model.Owner;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +15,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OwnerAuthenticationResponse {
 
-  private String token;
-  private OwnerDto owner;
+  /**
 
+   The token generated upon successful authentication.
+   */
+  private String token;
+  /**
+
+   The owner object containing details of the authenticated owner.
+   */
+  private OwnerDto owner;
 }
+
+
+

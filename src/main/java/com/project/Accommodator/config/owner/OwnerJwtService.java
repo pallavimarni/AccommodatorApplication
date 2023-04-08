@@ -14,43 +14,75 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+
+ Service class for handling JWT (JSON Web Token) related operations for the Owner user type.
+ */
 @Service
 public class OwnerJwtService {
-
   private static final String SECRET_KEY = "586E3272357538782F413F4428472B4B6250655368566B597033733676397924";
 
+  /**
+
+   Extracts the username from the given JWT token.
+   @param token the JWT token from which the username is to be extracted.
+   @return the username associated with the token.
+   */
   public String extractUsername(String token) {
     return extractClaim(token, Claims::getSubject);
   }
+  /**
 
+   Extracts a claim from the given JWT token using the provided claims resolver function.
+   @param token the JWT token from which the claim is to be extracted.
+   @param claimsResolver the function that resolves the claim from the token's claims.
+   @param <T> the type of the claim to be extracted.
+   @return the claim of the specified type extracted from the token.
+   */
   public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
     final Claims claims = extractAllClaims(token);
     return claimsResolver.apply(claims);
   }
+  /**
 
+   Generates a new JWT token for the provided Owner user details.
+   @param userDetails the details of the Owner user for whom the token is to be generated.
+   @return a new JWT token for the specified user.
+   */
   public String generateToken(UserDetails userDetails) {
     return generateToken(new HashMap<>(), userDetails);
   }
+  /**
 
+   Generates a new JWT token for the provided Owner user details and extra claims.
+   @param extraClaims additional claims to be included in the token.
+   @param userDetails the details of the Owner user for whom the token is to be generated.
+   @return a new JWT token for the specified user and extra claims.
+   */
   public String generateToken(
-      Map<String, Object> extraClaims,
-      UserDetails userDetails
+          Map<String, Object> extraClaims,
+          UserDetails userDetails
   ) {
     return Jwts
-        .builder()
-        .setClaims(extraClaims)
-        .setSubject(userDetails.getUsername())
-        .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-        .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-        .compact();
+            .builder()
+            .setClaims(extraClaims)
+            .setSubject(userDetails.getUsername())
+            .setIssuedAt(new Date(System.currentTimeMillis()))
+            .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+            .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+            .compact();
   }
+  /**
 
+   Checks whether the given JWT token is valid for the specified Owner user details.
+   @param token the JWT token to be validated.
+   @param userDetails the details of the Owner user for whom the token is to be validated.
+   @return true if the token is valid for the specified user, false otherwise.
+   */
   public boolean isTokenValid(String token, UserDetails userDetails) {
     final String username = extractUsername(token);
     return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
   }
-
   private boolean isTokenExpired(String token) {
     return extractExpiration(token).before(new Date());
   }
@@ -61,11 +93,11 @@ public class OwnerJwtService {
 
   private Claims extractAllClaims(String token) {
     return Jwts
-        .parserBuilder()
-        .setSigningKey(getSignInKey())
-        .build()
-        .parseClaimsJws(token)
-        .getBody();
+            .parserBuilder()
+            .setSigningKey(getSignInKey())
+            .build()
+            .parseClaimsJws(token)
+            .getBody();
   }
 
   private Key getSignInKey() {
