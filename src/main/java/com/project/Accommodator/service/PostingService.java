@@ -1,6 +1,6 @@
 package com.project.Accommodator.service;
+import com.project.Accommodator.model.PostRequestBody;
 import com.project.Accommodator.model.Posting;
-import com.project.Accommodator.model.Student;
 
 /**
 
@@ -8,13 +8,16 @@ import com.project.Accommodator.model.Student;
  */
 public interface PostingService {
 
+    Object createPosting(PostRequestBody Posting);
+
+
     /**
 
      Creates a new posting.
      @param posting The posting to be created.
      @return The newly created posting.
      */
-    Posting createPosting(Posting posting);
+//    Posting createPosting(Posting posting);
     /**
 
      Retrieves postings by the specified id.

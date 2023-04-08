@@ -2,6 +2,7 @@ package com.project.Accommodator.model;
 
 import java.util.Set;
 import jakarta.persistence.*;
+
 /**
  This class represents a posting object which contains details about a rental posting.
  The Posting class is annotated with @Entity and @Table to specify that it is a persistent entity
@@ -13,6 +14,9 @@ import jakarta.persistence.*;
  The class has getter and setter methods for all fields, which allow other classes to access and
  modify the fields of the Posting object.
  */
+
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 @Table(name="Posting")
 public class Posting {
