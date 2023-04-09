@@ -31,19 +31,7 @@ public class Posting {
         this.postId = postId;
     }
 
-    public Posting(Integer postId, String rent, String address, String description, String date, String category, String image, String type, String pincode, String email, Integer ownerId) {
-        this.postId = postId;
-        this.rent = rent;
-        this.address = address;
-        this.description = description;
-        this.date = date;
-        this.category = category;
-        this.image = image;
-        this.type = type;
-        this.pincode = pincode;
-        this.email = email;
-        this.ownerId = ownerId;
-    }
+
 
     public Integer getPostId() {
         return postId;
