@@ -3,7 +3,6 @@
 stages:
   - build
   - smells
-  - issue
   - test
   - package
   - deploy
@@ -42,17 +41,6 @@ smells_job:
       - smells/
       - /builds/courses/2023-winter/csci-5308/group25
 
-issue-job:
-  stage: issue
-  dependencies:
-    - smells_job
-  image: "python:3.10"
-  script:
-    - ls smells/ -a
-    - python --version
-    - pip install -r /builds/courses/2023-winter/csci-5308/group25/.gitlab/requirements.txt
-    - python /builds/courses/2023-winter/csci-5308/group25/.gitlab/issue.py $CI_COMMIT_SHA
-
 
 test:
   stage: test
@@ -84,8 +72,6 @@ deploy:
   image: docker:latest
   tags:
     - Asdc
-#  services:
-#    - docker:dind
   environment:
     name: development
     url: http://csci5308vm25.research.cs.dal.ca
@@ -102,15 +88,10 @@ deploy:
     - ssh-keyscan ${DEPLOY_SERVER} >> /root/.ssh/known_hosts || true
 
   script:
-#    - echo "$SSH_PRIVATE_KEY" | sudo tr -d '\r' > /root/.ssh/id_rsa
-#    - sudo chmod 600 /root/.ssh/id_rsa
-#    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > /root/.ssh/config
-#    - env
+
     - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin
     - docker build -t $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
     - docker push $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
-#    - eval $(ssh-agent -s)
-#    - ssh-add /root/.ssh/id_rsa
     - id
     - ssh csci5308vm25@${DEPLOY_SERVER} "docker login -u \"$DOCKER_HUB_USER\" -p \"$DOCKER_HUB_PASSWORD\""
     - ssh csci5308vm25@${DEPLOY_SERVER} "docker pull $DOCKER_HUB_USER/$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
